@@ -63,3 +63,8 @@ button {
     margin: 4rem;
     margin-top: 17rem;
 }
+
+.dark-mode {
+    background-color: black;
+    color: white;
+}
