@@ -3,6 +3,10 @@ body {
     font-size: 16px;
 }
 
+.video {
+    float: right;
+}
+
 .container {
     display: flex;
     justify-content: space-between;
@@ -62,6 +66,37 @@ button {
     text-align: center;
     margin: 4rem;
     margin-top: 17rem;
+}
+
+.navigation {
+    display: flex;
+    width: 70px;
+    height: 20px;
+    position: relative;
+    left: 48%;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 19rem;
+
+}
+
+.navigation a {
+    text-decoration: none;
+    color: black;
+}
+
+#second {
+    color: grey;
+    -webkit-user-select: none;
+    /* Safari */
+    -ms-user-select: none;
+    /* IE 10 and IE 11 */
+    user-select: none;
+    /* Standard syntax */
+}
+
+.navigation a:hover {
+    color: grey
 }
 
 .dark-mode {
