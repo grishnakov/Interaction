@@ -1,186 +1,103 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
-<html>
+<html lang="en">
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controlled Hallucination</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+            background: black;
+            color: rgb(0, 0, 0);
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        #hallucinationText {
+            position: absolute;
+            width: 100%;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 3em;
+            font-weight: bold;
+            opacity: 0.8;
+            animation: flicker 0.5s infinite alternate, colorShift 5s infinite alternate;
+        }
+    </style>
 </head>
 
 <body>
-    <!-- <video autoplay muted src="Comp 1.mp4" width="100%"></video> -->
+    <canvas id="hallucinationCanvas"></canvas>
+    <!-- <div id="hallucinationText">Controlled hallucination is and how flow of noisy and ambiguous sensory signals in which
+        it is continually immersed.</div> -->
+    <script>
+        const canvas = document.getElementById('hallucinationCanvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
 
-    <div class="container">
+        let audioContext;
+        let analyser;
+        let dataArray;
+        let bufferLength;
+        const text = "controlled hallucination is and how flow of noisy and ambiguous sensory signals in which it is continually immersed";
+        const letters = text.split("");
 
-        <!-- <div class="item"></div> -->
-
-        <div class="inform">
-            <p>Click to Reboost</p>
-        </div>
-
-        <div class="button">
-            <div class="circle-button">
-                <button id="text">OFF</button>
-            </div>
-        </div>
-    </div>
-
-
-
-    <!-- <div class="body-text">
-        <p>What does it mean to be human in the age of artificial intelligence when time-spaces can be expanded and
-            transformed into multiverse experiences in the mind of a machine?</p>
-    </div> -->
-
-
-    <!-- <div class="navigation">
-        <p id="one"> 1 </p>
-        <a href="../page-two/index.html"> 2 </a>
-        <a href="../page-three/index.html"> 3 </a>
-    </div> -->
-
-
-    <!DOCTYPE html>
-    <html lang="en">
-
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Controlled Hallucination</title>
-        <style>
-            body {
-                margin: 0;
-                overflow: hidden;
-                background: rgb(255, 255, 255);
-                color: white;
-                font-family: Arial, sans-serif;
-                text-align: center;
+        async function setupAudio() {
+            try {
+                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                const source = audioContext.createMediaStreamSource(stream);
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 2048;
+                bufferLength = analyser.frequencyBinCount;
+                dataArray = new Uint8Array(bufferLength);
+                source.connect(analyser);
+                animate();
+            } catch (error) {
+                console.error('Error accessing audio input:', error);
             }
+        }
 
-            canvas {
-                position: absolute;
-                top: 0;
-                left: 0;
-            }
-
-            #hallucinationText {
-                position: absolute;
-                width: 100%;
-                top: 50%;
-                transform: translateY(-50%);
-                font-size: 24px;
-                font-family: Arial, Helvetica, sans-serif;
-                text-transform: uppercase;
-                font-weight: bold;
-                opacity: 0.8;
-                animation: flicker 0.5s infinite alternate, colorShift 5s infinite alternate;
-            }
-
-            @keyframes flicker {
-                0% {
-                    opacity: 0.3;
-                }
-
-                100% {
-                    opacity: 1;
+        function generateHallucinativeVisuals() {
+            ctx.fillStyle = 'rgba(0, 0, 0, 0.02)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            if (dataArray && analyser) {
+                analyser.getByteFrequencyData(dataArray);
+                for (let i = 0; i < bufferLength; i++) {
+                    let angle = (i / bufferLength) * Math.PI * 100;
+                    let radius = (dataArray[i] / 255) * (canvas.width / 1.1);
+                    let x = Math.cos(angle + Math.random()) * radius + canvas.width / 2;
+                    let y = Math.sin(angle + Math.random()) * radius + canvas.height / 2;
+                    let size = Math.max(15, dataArray[i] / 3 + Math.random() * 15);
+                    let hue = (i * 15 + dataArray[i] * 5) % 360;
+                    let letter = letters[i % letters.length];
+                    ctx.fillStyle = `hsla(${hue}, 100%, 50%, 0.9)`;
+                    ctx.font = `${size}px Arial`;
+                    ctx.fillText(letter, x, y);
                 }
             }
+        }
 
-            @keyframes colorShift {
-                0% {
-                    color: hsl(0, 0%, 100%);
-                }
+        function animate() {
+            requestAnimationFrame(animate);
+            generateHallucinativeVisuals();
+        }
 
-                50% {
-                    color: hsl(180, 100%, 70%);
-                }
-
-                100% {
-                    color: hsl(0, 0%, 100%);
-                }
+        document.addEventListener('click', async () => {
+            if (!audioContext) {
+                await setupAudio();
             }
-        </style>
-    </head>
-
-    <body>
-        <canvas id="hallucinationCanvas"></canvas>
-        <div id="hallucinationText">Controlled hallucination - when the brain uses predictions and models to best
-            anticipate the flow of noisy and ambiguous sensory signals in which it is continually immersed.</div>
-        <script>
-            const canvas = document.getElementById('hallucinationCanvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-
-            let audioContext;
-            let analyser;
-            let dataArray;
-            let bufferLength;
-
-            async function setupAudio() {
-                try {
-                    const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
-                    audioContext = new (window.AudioContext || window.webkitAudioContext)();
-                    const source = audioContext.createMediaStreamSource(stream);
-                    analyser = audioContext.createAnalyser();
-                    analyser.fftSize = 2048;
-                    bufferLength = analyser.frequencyBinCount;
-                    dataArray = new Uint8Array(bufferLength);
-                    source.connect(analyser);
-                    animate();
-                } catch (error) {
-                    console.error('Error accessing audio input:', error);
-                }
-            }
-
-            function generateHallucinativeVisuals() {
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.02)';
-                ctx.fillRect(0, 0, canvas.width, canvas.height);
-                if (dataArray && analyser) {
-                    analyser.getByteFrequencyData(dataArray);
-                    for (let i = 0; i < bufferLength; i++) {
-                        let angle = (i / bufferLength) * Math.PI * 50;
-                        let radius = (dataArray[i] / 255) * (canvas.width / 1.1);
-                        let x = Math.cos(angle + Math.random()) * radius + canvas.width / 2;
-                        let y = Math.sin(angle + Math.random()) * radius + canvas.height / 2;
-                        let size = Math.max(15, dataArray[i] / 4 + Math.random() * 10);
-                        let hue = (i * 15 + dataArray[i] * 5) % 360;
-                        ctx.fillStyle = `hsla(${hue}, 100%, 50%, 0.9)`;
-                        ctx.beginPath();
-                        ctx.arc(x, y, size, 0, Math.PI * 2);
-                        ctx.fill();
-                        ctx.strokeStyle = `hsla(${(hue + 180) % 360}, 100%, 60%, 0.9)`;
-                        ctx.lineWidth = Math.random() * 7;
-                        ctx.stroke();
-                    }
-                }
-            }
-
-            function animate() {
-                requestAnimationFrame(animate);
-                generateHallucinativeVisuals();
-            }
-
-            document.addEventListener('click', async () => {
-                if (!audioContext) {
-                    await setupAudio();
-                }
-            });
-        </script>
-    </body>
-
-    </html>
-
-
-
-    <script src="script.js" async defer></script>
+        });
+    </script>
 </body>
 
 </html>
