@@ -1,0 +1,72 @@
+body {
+    background-color: whitesmoke;
+    margin: 0;
+}
+
+#instructions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: small;
+    text-transform: lowercase;
+}
+
+
+#morph-container-aesthetic {
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.letter-wrapper {
+    display: inline-block;
+    width: 20px;
+    /* Adjust this value based on your fonts */
+    text-align: center;
+    position: relative;
+}
+
+/* Each letter span is absolutely positioned so they overlap */
+.letter {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    transition: opacity 1s ease, filter 1s ease;
+    opacity: 0;
+    filter: blur(0.03em);
+    /* Adjust for desired blur effect */
+    white-space: pre;
+}
+
+/* The visible letter will be fully opaque and unblurred */
+.letter.visible {
+    opacity: 1;
+    filter: blur(0);
+}
+
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 40px;
+
+}
+
+.first {
+    display: flex;
+
+}
+
+.second {
+    display: flex;
+}
+
+.flex {
+    display: flex;
+}
