@@ -1,7 +1,8 @@
 // Define your fonts array
 const fonts = [
     '"erotica-big", sans-serif',
-    '"glammo", sans-serif'
+    '"glammo", sans-serif',
+    '"dazzle-unicase", sans-serif;'
 ];
 
 // Global variable to store the current RMS (intensity)
