@@ -1,7 +1,12 @@
 // Define your fonts array
 const fonts = [
     '"erotica-big", sans-serif',
-    '"glammo", sans-serif'
+    // '"glammo", sans-serif',
+    // '"am-serie-610", sans-serif',
+    '"jacquarda-bastarda-9", sans-serif',
+    '"dazzle-unicase", sans-serif',
+    '"courier-std", monospace',
+
 ];
 
 // Global variable to store the current RMS (intensity)
@@ -77,14 +82,14 @@ navigator.mediaDevices.getUserMedia({ audio: true })
 
         // --- Create the Debug Bar ---
         const debugBarContainer = document.createElement('div');
-        debugBarContainer.style.position = 'fixed';
-        debugBarContainer.style.top = '50%';
-        debugBarContainer.style.right = '20px';
-        debugBarContainer.style.transform = 'translateY(-50%)';
-        debugBarContainer.style.width = '30px';
-        debugBarContainer.style.height = '200px';
-        debugBarContainer.style.backgroundColor = '#eee';
-        debugBarContainer.style.border = '1px solid #aaa';
+        // debugBarContainer.style.position = 'fixed';
+        // debugBarContainer.style.top = '50%';
+        // debugBarContainer.style.right = '20px';
+        // debugBarContainer.style.transform = 'translateY(-50%)';
+        // debugBarContainer.style.width = '30px';
+        // debugBarContainer.style.height = '200px';
+        // debugBarContainer.style.backgroundColor = '#eee';
+        // debugBarContainer.style.border = '1px solid #aaa';
         document.body.appendChild(debugBarContainer);
 
         const levelIndicator = document.createElement('div');
@@ -119,3 +124,4 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     .catch(err => {
         console.error('Error accessing microphone:', err);
     });
+
