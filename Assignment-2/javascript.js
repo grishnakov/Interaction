@@ -1,7 +1,7 @@
+// Define your fonts array
 const fonts = [
     '"erotica-big", sans-serif',
-    '"glammo", sans-serif',
-    '"dazzle-unicase", sans-serif;',
+    '"glammo", sans-serif'
 ];
 
 // Global variable to store the current RMS (intensity)
@@ -100,7 +100,7 @@ navigator.mediaDevices.getUserMedia({ audio: true })
             let sumSquares = 0;
             for (let i = 0; i < dataArray.length; i++) {
                 // Normalize sample from [0,255] to roughly [-1, 1]
-                const normalized = (dataArray[i] - 128) / 64;
+                const normalized = (dataArray[i] - 128) / 128;
                 sumSquares += normalized * normalized;
             }
             const rms = Math.sqrt(sumSquares / dataArray.length);
@@ -119,51 +119,3 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     .catch(err => {
         console.error('Error accessing microphone:', err);
     });
-
-document.addEventListener('DOMContentLoaded', () => {
-    // Define your paragraph text
-    const paragraph = `individual`;
-
-    // Get the container where the words will be inserted.
-    const container = document.getElementById('words-container');
-    if (!container) {
-        console.error("Container with id 'words-container' not found!");
-        return;
-    }
-
-    // Split the paragraph into words (using any whitespace)
-    const words = paragraph.split(/\s+/);
-    console.log("Total words:", words.length); // Debug log
-
-    words.forEach((word, wordIndex) => {
-        // Create a div for each word
-        const wordDiv = document.createElement('div');
-        wordDiv.className = `word word-${wordIndex + 1}`;
-        wordDiv.setAttribute('alt', 'flex');
-
-        // Create an inner container using a class instead of an ID
-        const morphContainer = document.createElement('div');
-        morphContainer.className = "morph-container-aesthetic";
-
-        // For each character in the word, create a letter-wrapper with two inner spans
-        [...word].forEach(char => {
-            const letterWrapper = document.createElement('span');
-            letterWrapper.className = "letter-wrapper";
-
-            const letterVisible = document.createElement('span');
-            letterVisible.className = "letter visible";
-            letterVisible.textContent = char;
-
-            const letterEmpty = document.createElement('span');
-            letterEmpty.className = "letter";
-
-            letterWrapper.appendChild(letterVisible);
-            letterWrapper.appendChild(letterEmpty);
-            morphContainer.appendChild(letterWrapper);
-        });
-
-        wordDiv.appendChild(morphContainer);
-        container.appendChild(wordDiv);
-    });
-});
-

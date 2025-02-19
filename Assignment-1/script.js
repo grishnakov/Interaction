@@ -90,4 +90,3 @@ navigator.mediaDevices.getUserMedia({ audio: true })
     .catch(err => {
         console.error('Error accessing microphone:', err);
     });
-});
