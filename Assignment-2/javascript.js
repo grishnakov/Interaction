@@ -1,4 +1,4 @@
-
+alert("read text outloud for interactivity")
 // Define your fonts array
 const fonts = [
     '"erotica-big", sans-serif',
