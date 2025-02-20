@@ -1,101 +1,94 @@
 document.addEventListener("DOMContentLoaded", () => {
-  // Configuration
-  const itemHeight = 24; // height of each letter wrapper (in pixels)
-  const buffer = 5; // render extra items above and below the viewport
-  let fonts = [
+  const itemHeight = 24; // Fixed height per letter-wrapper (must match your CSS)
+  const buffer = 10; // Extra items above and below viewport
+  const maxNativeHeight = 50000; // Cap for the native scrollable height
+
+  const fonts = [
     '"erotica-big", sans-serif',
     '"glammo", sans-serif',
     '"dazzle-unicase", sans-serif'
   ];
-
-  // Global microphone RMS value (used in your morphing logic)
   let currentRMS = 0;
 
-  // Reference to our containers
   const viewport = document.getElementById("viewport");
   const spacer = document.getElementById("spacer");
   const visibleContainer = document.getElementById("visible-container");
 
-  // Load the full text from text.txt
+  // Load full text from text.txt
   fetch('text.txt')
     .then(response => response.text())
     .then(fullText => {
-      // Convert text to an array of characters
-      // (You can modify this if you want to preserve words/punctuation)
+      // Split the text into an array of characters (or words if you prefer)
       const lettersArray = fullText.split('');
       const totalItems = lettersArray.length;
+      const totalVirtualHeight = totalItems * itemHeight;
 
-      // Set the spacer height to represent the total virtual height
-      spacer.style.height = (totalItems * itemHeight) + "px";
+      // Calculate scaleFactor. If totalVirtualHeight exceeds maxNativeHeight, we scale.
+      const scaleFactor = totalVirtualHeight > maxNativeHeight
+        ? (maxNativeHeight / totalVirtualHeight)
+        : 1;
 
-      // Function to render only the letters that should be visible
+      // Set the spacer's height to our capped native height
+      spacer.style.height = (totalVirtualHeight > maxNativeHeight
+        ? maxNativeHeight
+        : totalVirtualHeight) + "px";
+
+      // Create a flex paragraph container for visible content
+      const flexParagraph = document.createElement('p');
+      flexParagraph.className = "flex-paragraph";
+      flexParagraph.style.margin = "0";
+      visibleContainer.appendChild(flexParagraph);
+
       function renderVisible() {
-        const scrollTop = viewport.scrollTop;
+        // Use the native scrollTop and scale it to get the virtual scrollTop.
+        const nativeScrollTop = viewport.scrollTop;
+        const virtualScrollTop = nativeScrollTop / scaleFactor;
+
         const viewportHeight = viewport.clientHeight;
-        const startIndex = Math.max(0, Math.floor(scrollTop / itemHeight) - buffer);
+        const startIndex = Math.max(0, Math.floor(virtualScrollTop / itemHeight) - buffer);
         const endIndex = Math.min(
           totalItems,
-          Math.ceil((scrollTop + viewportHeight) / itemHeight) + buffer
+          Math.ceil((virtualScrollTop + viewportHeight) / itemHeight) + buffer
         );
 
-        // Position the visible container at the correct offset
-        visibleContainer.style.transform = `translateY(${startIndex * itemHeight}px)`;
-        visibleContainer.innerHTML = ""; // clear previous content
+        // Debug: log scroll values and computed indices.
+        console.log(`Native scrollTop: ${nativeScrollTop} | Virtual: ${virtualScrollTop} | Render indices: ${startIndex} to ${endIndex}`);
 
-        // Render the letter wrappers for indices [startIndex, endIndex)
+        // Position the flex paragraph at the right offset.
+        flexParagraph.style.transform = `translateY(${startIndex * itemHeight}px)`;
+        flexParagraph.innerHTML = "";
+
+        // Render each letter in the current visible window.
         for (let i = startIndex; i < endIndex; i++) {
-          // Create the outer div container with class "second" (as in your example)
-          const wordDiv = document.createElement("div");
-          wordDiv.className = "second";
-          wordDiv.setAttribute("alt", "flex");
+          const letterWrapper = document.createElement('span');
+          letterWrapper.className = "letter-wrapper";
 
-          // Create the inner morph container
-          const morphContainer = document.createElement("div");
-          morphContainer.className = "morph-container-aesthetic";
-
-          // Create the letter wrapper structure for this single character
-          const wrapper = document.createElement("span");
-          wrapper.className = "letter-wrapper";
-
-          const letterVisible = document.createElement("span");
+          const letterVisible = document.createElement('span');
           letterVisible.className = "letter visible";
           letterVisible.textContent = lettersArray[i];
 
-          const letterHidden = document.createElement("span");
+          const letterHidden = document.createElement('span');
           letterHidden.className = "letter";
 
-          wrapper.appendChild(letterVisible);
-          wrapper.appendChild(letterHidden);
-          morphContainer.appendChild(wrapper);
-          wordDiv.appendChild(morphContainer);
-
-          visibleContainer.appendChild(wordDiv);
+          letterWrapper.appendChild(letterVisible);
+          letterWrapper.appendChild(letterHidden);
+          flexParagraph.appendChild(letterWrapper);
         }
-
-        // After rendering the visible letter wrappers, initialize the morphing effect.
-        initializeMorphing(visibleContainer);
+        initializeMorphing(flexParagraph);
       }
 
-      // Attach scroll event listener to update the visible portion on scroll
       viewport.addEventListener("scroll", renderVisible);
-      // Initial render
       renderVisible();
     })
     .catch(err => console.error("Error loading text.txt:", err));
 
-  // -------------------------------
-  // Morphing Code for each letter wrapper
-  // -------------------------------
   function initializeMorphing(container) {
-    // For each letter-wrapper in the current container, attach the morphing update logic.
     container.querySelectorAll('.letter-wrapper').forEach(wrapper => {
       const letters = wrapper.querySelectorAll('.letter');
-      // Initialize with a random font for the visible letter span.
       let currentFontIndex = Math.floor(Math.random() * fonts.length);
       letters[0].style.fontFamily = fonts[currentFontIndex];
 
       function updateLetter() {
-        // Only update if there is sufficient sound RMS.
         if (currentRMS < 0.05) {
           setTimeout(updateLetter, 100);
           return;
@@ -112,12 +105,10 @@ document.addEventListener("DOMContentLoaded", () => {
         hiddenEl.textContent = visibleEl.textContent;
         hiddenEl.style.fontFamily = fonts[nextFontIndex];
         hiddenEl.classList.remove('visible');
-        // Force reflow to trigger the transition
         void hiddenEl.offsetWidth;
         visibleEl.classList.remove('visible');
         hiddenEl.classList.add('visible');
         currentFontIndex = nextFontIndex;
-        // Delay based on currentRMS (loudness)
         const delay = Math.random() * (3000 * (1 - currentRMS)) + 100;
         setTimeout(updateLetter, delay);
       }
@@ -125,9 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // -------------------------------
-  // Microphone Input & Debug Bar (unchanged)
-  // -------------------------------
+  // Microphone input and debug bar remain unchanged.
   navigator.mediaDevices.getUserMedia({ audio: true })
     .then(stream => {
       const audioCtx = new AudioContext();
@@ -170,6 +159,6 @@ document.addEventListener("DOMContentLoaded", () => {
       updateDebugBar();
     })
     .catch(err => {
-      console.error('Error accessing microphone:', err);
+      console.error("Error accessing microphone:", err);
     });
 });

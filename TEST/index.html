@@ -3,25 +3,40 @@
 
 <head>
     <meta charset="UTF-8" />
-    <title>Virtualized Letter Morphing</title>
-    <link rel="stylesheet" href="style.css" />
+    <title>Virtualized Flex Paragraph</title>
+    <link rel="stylesheet" href="https://use.typekit.net/deh8sie.css">
     <style>
-        /* Basic styles for the virtual scroll container */
+        /* Viewport for virtual scrolling */
         #viewport {
-            height: 500px;
-            /* adjust as needed */
+            height: 700px;
+            /* Adjust as needed */
             overflow-y: auto;
             position: relative;
-            border: 1px solid #ccc;
+
         }
 
-        /* The inner spacer gives the container the full virtual height */
+        /* #viewport {
+            /* Hide scrollbar in Firefox */
+        scrollbar-width: none;
+        /* Hide scrollbar in IE 10+ */
+        -ms-overflow-style: none;
+        }
+
+        /* Hide scrollbar in WebKit-based browsers (Chrome, Safari, Opera) */
+        #viewport::-webkit-scrollbar {
+            display: none;
+        }
+
+        */
+
+        /* Invisible spacer to simulate the full virtual height */
         #spacer {
-            width: 1px;
+            width: 2px;
             opacity: 0;
+
         }
 
-        /* The container that holds the rendered letter wrappers */
+        /* Container for visible content */
         #visible-container {
             position: absolute;
             top: 0;
@@ -29,11 +44,22 @@
             right: 0;
         }
 
-        /* Your existing letter styles */
+        /* Flex paragraph container */
+        .flex-paragraph {
+            display: flex;
+            flex-wrap: wrap;
+            margin-top: 1em;
+
+        }
+
+        /* Fixed height for each letter-wrapper is crucial */
         .letter-wrapper {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             width: 10px;
-            text-align: center;
+            height: 24px;
+            /* Ensure this matches the JS itemHeight */
             position: relative;
         }
 
@@ -56,14 +82,11 @@
 </head>
 
 <body>
-    <!-- Virtual viewport -->
+    <!-- The scrollable viewport -->
     <div id="viewport">
-        <!-- This spacer div gives the overall height -->
         <div id="spacer"></div>
-        <!-- This container will hold the actual rendered letter wrappers -->
         <div id="visible-container"></div>
     </div>
-
     <script src="script.js"></script>
 </body>
 
