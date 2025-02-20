@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Virtualized Letter Morphing</title>
+    <link rel="stylesheet" href="style.css" />
+    <style>
+        /* Basic styles for the virtual scroll container */
+        #viewport {
+            height: 500px;
+            /* adjust as needed */
+            overflow-y: auto;
+            position: relative;
+            border: 1px solid #ccc;
+        }
+
+        /* The inner spacer gives the container the full virtual height */
+        #spacer {
+            width: 1px;
+            opacity: 0;
+        }
+
+        /* The container that holds the rendered letter wrappers */
+        #visible-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+        }
+
+        /* Your existing letter styles */
+        .letter-wrapper {
+            display: inline-block;
+            width: 10px;
+            text-align: center;
+            position: relative;
+        }
+
+        .letter {
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            transition: opacity 1s ease, filter 1s ease;
+            opacity: 0;
+            filter: blur(0.03em);
+            white-space: pre;
+        }
+
+        .letter.visible {
+            opacity: 1;
+            filter: blur(0);
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Virtual viewport -->
+    <div id="viewport">
+        <!-- This spacer div gives the overall height -->
+        <div id="spacer"></div>
+        <!-- This container will hold the actual rendered letter wrappers -->
+        <div id="visible-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
