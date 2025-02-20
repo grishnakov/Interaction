@@ -35,7 +35,7 @@ document.querySelectorAll('.letter-wrapper').forEach(wrapper => {
 
     function updateLetter() {
 
-        if (currentRMS < 0.02) {
+        if (currentRMS < 0.01) {
 
             setTimeout(updateLetter, 100);
             return;
