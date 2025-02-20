@@ -1,9 +1,18 @@
 const toggleButton = document.getElementById("text");
+const intro = document.querySelector(".intro");
 
 toggleButton.addEventListener("click", function () {
     document.body.classList.toggle("dark-mode");
     toggleButton.textContent = toggleButton.textContent === "ON" ? "OFF" : "ON";
+
+    // Toggle the display of the .intro element
+    if (intro.style.display === "none") {
+        intro.style.display = "block";
+    } else {
+        intro.style.display = "none";
+    }
 });
+
 
 // alert('Read Text Out loud for Interactivity & Enjoy!');
 const fonts = [
