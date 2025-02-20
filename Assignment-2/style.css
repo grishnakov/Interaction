@@ -48,8 +48,7 @@ button {
 }
 
 .dark-mode .flex-container {
-    color: white;
-    margin-top: 4em;
+    color: rgb(0, 0, 0);
 }
 
 
@@ -143,9 +142,6 @@ a {
 
 @media only screen and (max-width: 600px) {
 
-    .dark-mode {
-        background-position: center 100px;
-    }
 
     .dark-mode .flex-container {
         margin-top: 5em;
