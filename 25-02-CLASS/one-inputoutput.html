@@ -20,8 +20,15 @@
             color: #FE347E;
         }
 
+        #cursive2 {
+            font-family: "erotica-inline", sans-serif;
+            font-weight: 400;
+            font-style: normal;
+            font-size: 1em;
+        }
+
         h1 {
-            margin-top: 1em;
+            margin-top: 0.5em;
             font-family: Arial, Helvetica, sans-serif;
             font-size: 4em;
             text-transform: uppercase;
@@ -33,12 +40,11 @@
             h1 {
                 text-align: left;
                 margin: 0.5em;
-                font-size: 45px;
+                font-size: 50px;
             }
 
             #cursive {
                 font-size: 48px;
-
             }
         }
 
@@ -52,7 +58,11 @@
             height: 40px;
             color: #FE347E;
             text-align: center;
-            position: relative;
+            position: absolute;
+            /* top: 50%; */
+            left: 50%;
+            transform: translate(-50%, -50%);
+
 
         }
 
@@ -60,33 +70,28 @@
         /* STYLE FOR THE SUBMIT BUTTON */
         #submitButton {
             background-color: #FE347E;
-            /* width: 100px;
-            height: 50px;
-            border-radius: 50%; */
             width: 130px;
             text-align: center;
             aspect-ratio: 1;
             --g: /20.56% 20.56% radial-gradient(#000 calc(71% - 1px), #0000 71%) no-repeat;
             mask: 100% 50% var(--g), 93.301% 75% var(--g), 75% 93.301% var(--g), 50% 100% var(--g), 25% 93.301% var(--g), 6.699% 75% var(--g), 0% 50% var(--g), 6.699% 25% var(--g), 25% 6.699% var(--g), 50% 0% var(--g), 75% 6.699% var(--g), 93.301% 25% var(--g), radial-gradient(100% 100%, #000 38.366%, #0000 calc(38.366% + 1px));
             position: fixed;
-            bottom: 0px;
-            transform: translate(-50%, -50%);
-
+            right: 30px;
+            bottom: 50px;
 
         }
 
-        /* STYLE FOR THE IMAGE */
         #displayedImage {
             display: none;
             width: 100%;
-            /* This line is mandatory */
+            object-fit: cover;
         }
     </style>
 </head>
 
 <body>
 
-    <h1><span id="cursive">B</span>otanical <span id="cursive">L</span>ist A-Z</h1>
+    <h1><span id="cursive">B</span>otanical <span id="cursive2">L</span>ist A-Z</h1>
 
 
     <!-- INPUT FIELD FOR 1 CHARACTER -->
@@ -143,12 +148,12 @@
                 imgElement.style.display = "block";
             } else {
 
-                // alert("Please enter a letter between A and Z.");
+                alert("Please enter a letter between A and Z.");
                 // imgElement.style.display = "none";
 
 
                 // IF INVALID INPUT IS ENTERED, DISPLAY ALTERNATE IMAGE
-                imgElement.src = "tkdnJhMXY4Njd1cXR3MTM3MW1nMzZ1NXNhNHlhOHA0MWF2dDUzdyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/13dRJkj5wgKq9q/giphy.gif"
+                imgElement.src = "images/giphy.gif"
                 imgElement.style.display = "block";
             }
         }
