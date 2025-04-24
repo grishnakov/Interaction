@@ -1,0 +1,13 @@
+@media (max-width: 600px) {
+
+    #svg-container g {
+        cursor: pointer;
+        transition: fill 0.2s;
+    }
+
+    #svg-container g:hover rect,
+    #svg-container g:hover circle {
+        fill: #ffcc00;
+    }
+
+}
