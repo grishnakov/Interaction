@@ -1,23 +1,85 @@
-// 1. Create map with a simple, pixel‑based coordinate system
-var map = L.map('map', {
-    // Simple CRS: 1 unit = 1px
-    crs: L.CRS.Simple,
-    minZoom: 3,    // allow zooming out
-    maxZoom: 6      // adjust as you like
+// 1) Your SVG calibration parameters
+const imgWidth = 6583, imgHeight = 16838;
+const anchorPx = [3048, 11835];
+const anchorLatLng = [40.735863, -73.991084];
+const totalLonSpan = 0.120, totalLatSpan = 0.182;
+
+// 2) Compute your imgBounds exactly as before
+const degPerPxLon = totalLonSpan / imgWidth;
+const degPerPxLat = totalLatSpan / imgHeight;
+const [ax, ay] = anchorPx;
+const [alat, alon] = anchorLatLng;
+const latNorth = alat + ay * degPerPxLat;
+const lonWest = alon - ax * degPerPxLon;
+const latSouth = latNorth - totalLatSpan;
+const lonEast = lonWest + totalLonSpan;
+const imgBounds = L.latLngBounds(
+    L.latLng(latSouth, lonWest),
+    L.latLng(latNorth, lonEast)
+);
+
+// 3) Create the map **with a default center+zoom** (we'll override below)
+const map = L.map('map', {
+    center: imgBounds.getCenter(),
+    attributionControl: false,
+    zoom: 12,
+    minZoom: 11,
+    maxZoom: 24,
+    maxBounds: imgBounds,
+    maxBoundsViscosity: 1.0
 });
 
-// 2. Figure out your image’s pixel dimensions
-//    Let’s say your PNG is 2000×1200px
-var w = 6583,
-    h = 16838;
+// 4) Overlay your SVG
+L.imageOverlay('test-map.svg', imgBounds).addTo(map);
 
-// 3. Define the image’s bounds in “map units”
-var southWest = map.unproject([0, h], map.getMaxZoom());
-var northEast = map.unproject([w, 0], map.getMaxZoom());
-var bounds = new L.LatLngBounds(southWest, northEast);
+// 5) Prepare the user marker (hidden until we get a fix)
+const userMarker = L.circleMarker([0, 0], {
+    radius: 8, fillColor: '#007AFF', color: '#fff',
+    weight: 2, fillOpacity: 0.8
+}).addTo(map);
 
+// 6) Helper: on first GPS fix, center the map there
+function onInitialPosition(pos) {
+    const ll = [pos.coords.latitude, pos.coords.longitude];
+    if (imgBounds.contains(ll)) {
+        map.setView(ll, 17);            // zoom in on them
+        userMarker.setLatLng(ll);
+    } else {
+        // outside area → keep default fitBounds
+        map.fitBounds(imgBounds);
+    }
+    // start continuous tracking
+    navigator.geolocation.watchPosition(onUpdatePosition, onPosError, {
+        enableHighAccuracy: true,
+        maximumAge: 1000,
+        timeout: 5000
+    });
+}
 
-L.imageOverlay('test-map.svg', bounds).addTo(map);
+// 7) Continuous updates just move the marker (and optionally pan)
+function onUpdatePosition(pos) {
+    const ll = [pos.coords.latitude, pos.coords.longitude];
+    if (imgBounds.contains(ll)) {
+        userMarker.setLatLng(ll);
+        // uncomment to follow them:
+        // map.panTo(ll);
+    }
+}
 
-// 5. Tell the map to fit those bounds
-map.fitBounds(bounds);
+function onPosError(err) {
+    console.error('Geolocation error:', err);
+    // fallback: show the full map
+    map.fitBounds(imgBounds);
+}
+
+// 8) Kick things off: request a one-time position
+if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(onInitialPosition, onPosError, {
+        enableHighAccuracy: true,
+        maximumAge: 0,
+        timeout: 10000
+    });
+} else {
+    alert('Geolocation not supported, showing full map.');
+    map.fitBounds(imgBounds);
+}
