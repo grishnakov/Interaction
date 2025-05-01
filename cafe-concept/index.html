@@ -20,20 +20,25 @@
 <body>
     <input type="checkbox" id="nav-toggle" class="nav-toggle" />
 
-    <!-- hamburger icon -->
     <label for="nav-toggle" class="nav-toggle-label">
         <span></span>
     </label>
 
-    <!-- right-side sidebar -->
     <nav>
         <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#">Services</a></li>
-            <li><a href="#">Portfolio</a></li>
-            <li><a href="#">Contact</a></li>
+
+            <li><a href="login.html" class="nav-link">Log in</a></li>
+            <li><a href="list.html" class="nav-link">Cafe Collection</a></li>
+            <li><a href="addgem.html" class="nav-link">Add a new GEM</a></li>
+            <li><a href="about.html" class="nav-link">About</a></li>
+
         </ul>
+
+        <div id="nav-view" style="padding:1rem; overflow-y:auto; height: calc(100vh - 4rem);">
+            <h2>Welcome!</h2>
+            <p>Select something from the menu.</p>
+        </div>
+
     </nav>
 
     <div id="main">

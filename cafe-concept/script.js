@@ -1,14 +1,3 @@
-function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
-    document.getElementById("main").style.marginLeft = "250px";
-    document.body.style.backgroundColor = "rgba(0,0,0,0.4)";
-}
-  
-function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
-    document.getElementById("main").style.marginLeft= "0";
-    document.body.style.backgroundColor = "white";
-}
 
 const imgWidth = 6583, imgHeight = 16838;
 const anchorPx = [3048, 11835];
@@ -41,7 +30,7 @@ const map = L.map('map', {
 });
 
 // 4) Overlay your SVG
-L.imageOverlay('test-map.svg', imgBounds).addTo(map);
+L.imageOverlay('map.svg', imgBounds).addTo(map);
 
 // 5) Prepare the user marker (hidden until we get a fix)
 const userMarker = L.circleMarker([0, 0], {
@@ -94,3 +83,37 @@ if (navigator.geolocation) {
     alert('Geolocation not supported, showing full map.');
     map.fitBounds(imgBounds);
 }
+
+const navView = document.getElementById('nav-view');
+
+function loadNavPage(url, pushState = true) {
+    fetch(url)
+        .then(res => {
+            if (!res.ok) throw new Error(res.statusText);
+            return res.text();
+        })
+        .then(html => {
+            navView.innerHTML = html;
+            if (pushState) history.pushState({ page: url }, '', url);
+        })
+
+        .catch(err => {
+            navView.innerHTML = `<p style="color:red">Error loading page.<br>${err}</p>`;
+        });
+}
+
+// Attach click‐handlers to every <a class="nav-link">
+document.querySelectorAll('.nav-link').forEach(link => {
+    link.addEventListener('click', e => {
+        e.preventDefault();
+        const href = link.getAttribute('href');        // ← use href here
+        loadNavPage(href);
+    });
+});
+
+// Back/forward support
+window.addEventListener('popstate', e => {
+    if (e.state && e.state.page) {
+        loadNavPage(e.state.page, false);
+    }
+});
