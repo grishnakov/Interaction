@@ -14,13 +14,31 @@
     <link rel="stylesheet" href="https://use.typekit.net/deh8sie.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="nav.css" />
 </head>
 
 <body>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
 
+    <!-- hamburger icon -->
+    <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+    </label>
+
+    <!-- right-side sidebar -->
+    <nav>
+        <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">About</a></li>
+            <li><a href="#">Services</a></li>
+            <li><a href="#">Portfolio</a></li>
+            <li><a href="#">Contact</a></li>
+        </ul>
+    </nav>
 
     <div id="main">
         <div id="map" style="width:100%;"></div>
+        <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
     </div>
 
 
