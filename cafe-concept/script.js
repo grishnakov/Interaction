@@ -1,4 +1,12 @@
-// 1) Your SVG calibration parameters
+function openNav() {
+    document.getElementById("mySidebar").style.width = "250px";
+
+}
+
+function closeNav() {
+    document.getElementById("mySidebar").style.width = "0";
+}
+
 const imgWidth = 6583, imgHeight = 16838;
 const anchorPx = [3048, 11835];
 const anchorLatLng = [40.735863, -73.991084];
@@ -25,8 +33,8 @@ const map = L.map('map', {
     zoom: 12,
     minZoom: 11,
     maxZoom: 24,
-    maxBounds: imgBounds,
-    maxBoundsViscosity: 1.0
+    maxBounds: imgBounds.pad(0.05),
+    maxBoundsViscosity: 1.0,
 });
 
 // 4) Overlay your SVG

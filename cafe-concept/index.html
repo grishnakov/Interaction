@@ -11,14 +11,27 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.typekit.net/deh8sie.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <div id="map" style="width:100%;"></div>
+    <div id="mySidebar" class="sidebar">
+        <span class="closebtn" onclick="closeNav()">×</span>
+        <a href="#">Collection</a>
+        <a href="#">Submit your new gem</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+    </div>
 
+    <div id="main">
+        <button class="openbtn" onclick="openNav()">☰ Open Menu</button>
+        <p>Click the “☰ Open Menu” button to slide in the menu from the right.</p>
+
+        <div id="map" style="width:100%;"></div>
+    </div>
 
 
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
