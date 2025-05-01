@@ -1,11 +1,4 @@
-function openNav() {
-    document.getElementById("mySidebar").style.width = "250px";
 
-}
-
-function closeNav() {
-    document.getElementById("mySidebar").style.width = "0";
-}
 
 const imgWidth = 6583, imgHeight = 16838;
 const anchorPx = [3048, 11835];
