@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://use.typekit.net/deh8sie.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="static/style.css">
+    <link rel="stylesheet" href="static/nav.css" />
+    <link rel="apple-touch-icon" sizes="180x180" href="static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="static/favicon-16x16.png">
+    <link rel="manifest" href="static/site.webmanifest">
+</head>
+
+<!-- index.html -->
+<body>
+    <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+
+    <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+    </label>
+
+    <!-- The <nav> element itself -->
+    <nav>
+        <!-- The list of links (will be hidden/shown) -->
+        <ul>
+            <li><a href="/login" class="nav-link">Log in</a></li>
+            <li><a href="/list" class="nav-link">Cafe Collection</a></li>
+            <li><a href="/addgem" class="nav-link">Add a new GEM</a></li>
+            <li><a href="/about" class="nav-link">About</a></li>
+        </ul>
+
+        <!-- The content area -->
+        <div id="nav-view" style="color: white;"> <!-- Added color style -->
+            <h2>Welcome!</h2>
+            <p>Select something from the menu.</p>
+            <!-- This content will be replaced -->
+        </div>
+
+    </nav>
+
+    <div id="main">
+        <div id="map" style="width:100%;"></div>
+        <!-- Removed the old openNav span -->
+    </div>
+
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+    <!-- Make sure script.js is loaded AFTER the DOM elements exist -->
+    <script src="static/script.js" async defer></script>
+</body>
+
+
+</html>

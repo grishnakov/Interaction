@@ -1,4 +1,6 @@
 
+
+
 const imgWidth = 6583, imgHeight = 16838;
 const anchorPx = [3048, 11835];
 const anchorLatLng = [40.735863, -73.991084];

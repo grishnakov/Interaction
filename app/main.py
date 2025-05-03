@@ -1,191 +1,146 @@
+import uvicorn
+from fastapi import FastAPI
+from fastapi.responses import (
+    FileResponse,
+    HTMLResponse,
+)
+from fastapi.staticfiles import StaticFiles
+from dotenv import load_dotenv
+from contextlib import asynccontextmanager
 import os
-import secrets
-from datetime import datetime, timedelta
-from typing import Generator, Optional
+from fastapi import Form, HTTPException, status  # Add necessary imports
+from fastapi.responses import JSONResponse
 
-from fastapi import (
-    FastAPI,
-    Depends,
-    HTTPException,
-    Header,
-    status,
-)
-from fastapi.responses import HTMLResponse
-from sqlalchemy import (
-    Column,
-    DateTime,
-    ForeignKey,
-    Integer,
-    String,
-    delete,
-    select,
-)
-from sqlalchemy.ext.asyncio import (
-    AsyncSession,
-    create_async_engine,
-    async_sessionmaker,
-)
-from sqlalchemy.orm import declarative_base, relationship
-from passlib.context import CryptContext
-
-# DATABASE_URL example:
-# postgresql+asyncpg://user:password@db:5432/appdb
-DATABASE_URL = os.getenv(
-    "DATABASE_URL",
-    "postgresql+asyncpg://user:password@db:5432/appdb",
-)
-
-# --- Database setup ---
-engine = create_async_engine(DATABASE_URL, echo=True)
-async_session = async_sessionmaker(bind=engine, expire_on_commit=False)
-Base = declarative_base()
-
-# --- Password hashing ---
-pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+load_dotenv()
 
 
-def hash_password(password: str) -> str:
-    return pwd_context.hash(password)
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    yield
 
 
-def verify_password(plain: str, hashed: str) -> bool:
-    return pwd_context.verify(plain, hashed)
+def get_base_dir():
+    return os.path.dirname(os.path.abspath(__file__))
 
 
-# --- Models ---
-class User(Base):
-    __tablename__ = "users"
-
-    id = Column(Integer, primary_key=True, index=True)
-    username = Column(String, unique=True, index=True, nullable=False)
-    hashed_password = Column(String, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-
-    sessions = relationship("SessionToken", back_populates="user", cascade="all,delete")
+app = FastAPI(lifespan=lifespan)
+app.mount("/static", StaticFiles(directory="app/static"), name="static")
 
 
-class SessionToken(Base):
-    __tablename__ = "session_tokens"
-
-    id = Column(Integer, primary_key=True, index=True)
-    user_id = Column(Integer, ForeignKey("users.id"), nullable=False)
-    token = Column(String, unique=True, index=True, nullable=False)
-    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
-    expires_at = Column(DateTime, nullable=False)
-
-    user = relationship("User", back_populates="sessions")
+@app.get("/favicon.ico", include_in_schema=False)
+async def favicon():
+    return FileResponse("static/favicon.ico")
 
 
-# Create tables on startup
-async def create_tables() -> None:
-    async with engine.begin() as conn:
-        await conn.run_sync(Base.metadata.create_all)
+@app.get("/apple-touch-icon.png", include_in_schema=False)
+async def apple_touch_icon():
+    return FileResponse("static/apple-touch-icon.png")
 
 
-# Dependency: get a DB session
-async def get_db() -> Generator[AsyncSession, None, None]:
-    async with async_session() as session:
-        yield session
+@app.get("/favicon-32x32.png", include_in_schema=False)
+async def favicon_32():
+    return FileResponse("static/favicon-32x32.png")
 
 
-# Dependency: get current user from Bearer token
-async def get_current_user(
-    authorization: Optional[str] = Header(None),
-    db: AsyncSession = Depends(get_db),
-) -> User:
-    if not authorization or not authorization.startswith("Bearer "):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Missing or invalid Authorization header",
-        )
-    token = authorization.split(" ", 1)[1]
-    result = await db.execute(select(SessionToken).where(SessionToken.token == token))
-    session_obj = result.scalar_one_or_none()
-    if not session_obj or session_obj.expires_at < datetime.utcnow():
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid or expired token",
-        )
-    result = await db.execute(select(User).where(User.id == session_obj.user_id))
-    return result.scalar_one()
+@app.get("/favicon-16x16.png", include_in_schema=False)
+async def favicon_16():
+    return FileResponse("static/favicon-16x16.png")
 
 
-# --- FastAPI app ---
-app = FastAPI()
-app.add_event_handler("startup", create_tables)
+@app.get("/site.webmanifest", include_in_schema=False)
+async def site_manifest():
+    return FileResponse("static/site.webmanifest")
 
 
 @app.get("/", response_class=HTMLResponse)
-async def read_root():
-    return """
-    <html>
-      <head><title>Simple Web Server</title></head>
-      <body>
-        <h1>Welcome to the Simple Web Server</h1>
-      </body>
-    </html>
-    """
+def get_index():
+    base_dir = os.path.dirname(os.path.abspath(__file__))
+    file_path = os.path.join(base_dir, "index.html")
+    with open(file_path, "r", encoding="utf-8") as file:
+        return HTMLResponse(content=file.read())
 
 
-@app.post("/signup")
-async def signup(
-    username: str,
-    password: str,
-    db: AsyncSession = Depends(get_db),
-):
-    result = await db.execute(select(User).where(User.username == username))
-    if result.scalar_one_or_none():
-        raise HTTPException(
-            status_code=status.HTTP_400_BAD_REQUEST,
-            detail="Username already taken",
+@app.get("/login", response_class=HTMLResponse)
+def get_login_fragment():
+    """Serves the HTML fragment for the login form."""
+    file_path = os.path.join(get_base_dir(), "templates", "login_fragment.html")
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            return HTMLResponse(content=file.read())
+    except FileNotFoundError:
+        # Log the error for debugging
+        print(f"Error: Could not find login fragment at {file_path}")
+        # Return an error response to the client
+        return HTMLResponse(
+            content="<p style='color:red;'>Error: Login form could not be loaded.</p>",
+            status_code=500,  # Internal Server Error
         )
-    user = User(
-        username=username,
-        hashed_password=hash_password(password),
-    )
-    db.add(user)
-    await db.commit()
-    await db.refresh(user)
-    return {"id": user.id, "username": user.username}
+    except Exception as e:
+        print(f"Error reading login fragment: {e}")
+        return HTMLResponse(
+            content="<p style='color:red;'>Error: Login form could not be loaded.</p>",
+            status_code=500,
+        )
+
+
+# Add your user/auth logic here (e.g., using Depends for user data)
 
 
 @app.post("/login")
-async def login(
-    username: str,
-    password: str,
-    db: AsyncSession = Depends(get_db),
-):
-    result = await db.execute(select(User).where(User.username == username))
-    user = result.scalar_one_or_none()
-    if not user or not verify_password(password, user.hashed_password):
+async def post_login_api(username: str = Form(...), password: str = Form(...)):
+    # --- Replace with your actual authentication logic ---
+    print(f"Attempting login for user: {username}")  # Example logging
+    if username == "testuser" and password == "password123":
+        # In a real app, you'd create a session/token here
+        print("Login successful (dummy check)")
+        return JSONResponse(content={"message": "Login successful", "user": username})
+    else:
+        print("Login failed (dummy check)")
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Invalid credentials",
+            detail="Incorrect username or password",
+            headers={"WWW-Authenticate": "Bearer"},  # Or appropriate header
         )
-    token = secrets.token_urlsafe(32)
-    expires_at = datetime.utcnow() + timedelta(hours=1)
-    session_obj = SessionToken(user_id=user.id, token=token, expires_at=expires_at)
-    db.add(session_obj)
-    await db.commit()
-    return {"access_token": token, "token_type": "bearer"}
 
 
-@app.get("/me")
-async def read_current_user(user: User = Depends(get_current_user)):
-    return {"id": user.id, "username": user.username}
+# Add endpoints for other nav links returning HTML fragments
+@app.get("/list", response_class=HTMLResponse)
+async def get_list_fragment():
+    return HTMLResponse(
+        content="<h2>Cafe Collection</h2><p>List of cafes goes here...</p>"
+    )
 
 
-@app.post("/logout")
-async def logout(
-    authorization: Optional[str] = Header(None),
-    db: AsyncSession = Depends(get_db),
-):
-    if not authorization or not authorization.startswith("Bearer "):
-        raise HTTPException(
-            status_code=status.HTTP_401_UNAUTHORIZED,
-            detail="Missing or invalid Authorization header",
-        )
-    token = authorization.split(" ", 1)[1]
-    await db.execute(delete(SessionToken).where(SessionToken.token == token))
-    await db.commit()
-    return {"detail": "Logged out"}
+@app.get("/addgem", response_class=HTMLResponse)
+async def get_addgem_fragment():
+    # Example form
+    return HTMLResponse(
+        content="<h2>Add New GEM</h2><form><label>Name:</label><input type='text'><button type='submit'>Add</button></form>"
+    )
+
+
+@app.get("/about", response_class=HTMLResponse)
+async def get_about_fragment():
+    return HTMLResponse(content="<h2>About</h2><p>This is the about section...</p>")
+
+
+# Example signup fragment endpoint
+@app.get("/signup", response_class=HTMLResponse)
+async def get_signup_fragment():
+    # Example form
+    return HTMLResponse(
+        content="<h2>Sign Up</h2><form action='/signup' method='post'><label>Username:</label><input type='text' name='username'><label>Password:</label><input type='password' name='password'><button type='submit'>Sign Up</button></form>"
+    )
+
+
+# You'll also need a POST endpoint for /signup if you add that form
+@app.post("/signup")
+async def post_signup_api(username: str = Form(...), password: str = Form(...)):
+    # --- Replace with your actual user creation logic ---
+    print(f"Attempting signup for user: {username}")
+    # Add user to database, etc.
+    return JSONResponse(content={"message": "Signup successful", "user": username})
+
+
+if __name__ == "__main__":
+    uvicorn.run(app="app.main:app", host="0.0.0.0", port=8001, reload=True)

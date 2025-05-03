@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+
 <html>
 
 <head>
@@ -15,11 +12,13 @@
 </head>
 
 <body>
-    <input type="text" id="username" placeholder="Username" name="name" required minlength="5" max length="10"
-        size="10">
+    <input type="text" id="username" placeholder="Username" required minlength="5" max length="10" size="10">
 
-    <input type="text" id="username" placeholder="Password" name="name" required minlength="5" max length="10"
-        size="10">
+    <input type="text" id="password" placeholder="Password" required minlength="5" max length="10" size="10">
+    <div class="button-group">
+        <button id="signin" type="submit">Sign In</button>
+        <button id="signup" type="submit">Sign Up</button>
+      </div>
 </body>
 
 </html>

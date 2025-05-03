@@ -1,0 +1,24 @@
+<!-- app/templates/login_fragment.html -->
+<div class="login-container"> <!-- Container for flex layout -->
+    <!-- Login Form -->
+    <form action="/login" method="post" id="nav-login-form">
+        <input class="nav-input" type="text" name="username" placeholder="Username" required minlength="5" maxlength="10" size="10">
+        <input class="nav-input" type="password" name="password" placeholder="Password" required minlength="5" maxlength="10" size="10">
+        <button class="nav-button" type="submit">Log In</button>
+        <div class="login-error-message" style="color: red; margin-top: 0.5rem;"></div> <!-- Placeholder for errors -->
+    </form>
+
+    <!-- Sign Up Button (using JS navigation) -->
+    <!-- Using a button with onclick is better for SPA navigation -->
+    <!-- than a separate form with method="get" -->
+    <div class="signup-section">
+         <button class="nav-button" type="button" onclick="loadNavPage('/signup')">Sign Up</button>
+         <!-- Or, if you really want the form structure: -->
+         <!-- <form action="/signup" method="get">
+              <button class="nav-button" type="submit">Sign Up</button>
+         </form> -->
+         <!-- Note: The form version will cause a full page reload to /signup -->
+         <!-- unless you intercept it with JS, defeating the purpose -->
+         <!-- of loadNavPage. Stick with the onclick button. -->
+    </div>
+</div>
