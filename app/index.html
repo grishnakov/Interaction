@@ -1,8 +1,5 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+
 <html>
 
 <head>
@@ -30,32 +27,82 @@
     </label>
 
     <!-- The <nav> element itself -->
-    <nav>
-        <!-- The list of links (will be hidden/shown) -->
-        <ul>
-            <li><a href="/login" class="nav-link">Log in</a></li>
-            <li><a href="/list" class="nav-link">Cafe Collection</a></li>
-            <li><a href="/addgem" class="nav-link">Add a new GEM</a></li>
-            <li><a href="/about" class="nav-link">About</a></li>
-        </ul>
-
-        <!-- The content area -->
-        <div id="nav-view" style="color: white;"> <!-- Added color style -->
-            <h2>Welcome!</h2>
-            <p>Select something from the menu.</p>
-            <!-- This content will be replaced -->
-        </div>
-
-    </nav>
+        <nav>
+            <!-- The list of links (will be hidden/shown) -->
+            <ul>
+                <li><a href="#login" class="nav-link" data-target="login-view">Log in</a></li>
+                <li><a href="#list" class="nav-link" data-target="list-view">Cafe Collection</a></li>
+                <li><a href="#addgem" class="nav-link" data-target="addgem-view">Add a new GEM</a></li>
+                <li><a href="#about" class="nav-link" data-target="about-view">About</a></li>
+            </ul>
+        
+            <!-- The content area -->
+            <div id="nav-view">
+                <!-- Default view (shown when no content is loaded) -->
+                <div id="default-view" class="content-section active">
+                    <h2>Welcome!</h2>
+                    <p>Select something from the menu.</p>
+                </div>
+                
+                <!-- Login view (hidden by default) -->
+                <div id="login-view" class="content-section">
+                    <button class="back-button">← Back to menu</button>
+                    <div class="login-container">
+                        <form action="/login" method="post" id="login-form">
+                            <input class="nav-input" type="text" name="username" placeholder="Username" required>
+                            <input class="nav-input" type="password" name="password" placeholder="Password" required>
+                            <button class="nav-button" type="submit">Log In</button>
+                            <div class="login-error-message"></div>
+                        </form>
+                        <div class="signup-section">
+                            <button class="nav-button" type="button" data-target="signup-view">Sign Up</button>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Add other content sections similarly -->
+                <div id="list-view" class="content-section">
+                    <button class="back-button">← Back to menu</button>
+                    <h2>Cafe Collection</h2>
+                    <p>List of cafes goes here...</p>
+                </div>
+                
+                <div id="addgem-view" class="content-section">
+                    <button class="back-button">← Back to menu</button>
+                    <h2>Add New GEM</h2>
+                    <form>
+                        <input class="nav-input" type="text" placeholder="Cafe name">
+                        <button class="nav-button" type="submit">Add</button>
+                    </form>
+                </div>
+                
+                <div id="about-view" class="content-section">
+                    <button class="back-button">← Back to menu</button>
+                    <h2>About</h2>
+                    <p>This is the about section...</p>
+                </div>
+                
+                <div id="signup-view" class="content-section">
+                    <button class="back-button">← Back to menu</button>
+                    <h2>Sign Up</h2>
+                    <form action="/signup" method="post">
+                        <input class="nav-input" type="text" name="username" placeholder="Username" required>
+                        <input class="nav-input" type="password" name="password" placeholder="Password" required>
+                        <button class="nav-button" type="submit">Sign Up</button>
+                    </form>
+                </div>
+            </div>
+        </nav>
+        
 
     <div id="main">
         <div id="map" style="width:100%;"></div>
-        <!-- Removed the old openNav span -->
     </div>
-
+    <script src="static/nav.js"></script>
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <!-- Make sure script.js is loaded AFTER the DOM elements exist -->
     <script src="static/script.js" async defer></script>
+    
 </body>
 
 

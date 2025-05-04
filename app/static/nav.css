@@ -26,6 +26,7 @@ ul {
     align-items: center;
     justify-content: center;
     transition: right 0.3s ease;
+    z-index: 101 !important;
 }
 
 .nav-toggle-label span::before,
@@ -53,9 +54,9 @@ nav {
     transform: translateX(100%);
     transition: transform 0.3s ease;
     padding-top: 4rem;
-    z-index: 2;
     /* Add overflow hidden to prevent scrollbars when ul is hidden */
     overflow: hidden;
+    z-index: 100 !important;
 }
 
 nav ul {
@@ -217,3 +218,27 @@ nav.content-loaded #nav-view {
     width: 100%; /* Take full width */
 }
 
+.content-section {
+    display: none; /* Hide all content sections by default */
+}
+
+.content-section.active {
+    display: block; /* Show only active section */
+}
+
+/* Back button styling */
+.back-button {
+    border-radius: 50px;
+    border: 1px solid #ccc;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1rem;
+    background-color: white;
+    color: black;
+    cursor: pointer;
+    font-weight: 500;
+    display: block;
+}
+
+.back-button:hover {
+    background-color: whitesmoke;
+}
