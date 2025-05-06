@@ -41,7 +41,7 @@ fetch('static/cafes.json')
     cafes.forEach(cafe => {
       // 1) build a custom icon for *this* cafe
       const icon = L.icon({
-        iconUrl: "",    // e.g. "assets/icons/union-square.png"
+        iconUrl: "static/icons/Joe-&-the-Juice.png",    // e.g. "assets/icons/union-square.png"
         iconSize: [32, 32],      // adjust per your images
         iconAnchor: [16, 32],      // bottom‑center of the icon
         popupAnchor: [0, -32]       // where the popup arrow points
@@ -51,7 +51,7 @@ fetch('static/cafes.json')
       L.marker([cafe.lat, cafe.lng], { icon })
         .addTo(map)
         .bindPopup(`<strong>${cafe.name}</strong><br>Status: ${cafe.status}`)
-        // .openPopup()  // if you want them all open by default
+        .openPopup()  // if you want them all open by default
         ;
     });
   })
