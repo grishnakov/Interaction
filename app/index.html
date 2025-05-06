@@ -50,16 +50,15 @@
             <div id="list-view" class="content-section">
                 <button class="back-button">←</button>
 
-                <div class="search-container">
-                    <input type="text" id="cafe-search" placeholder="Culture cafes...">
-                    <button id="search-button" onclick="search()">SEARCH</button>
+                <div class="search-wrapper">
+                    <input type="text" id="cafe-search" placeholder="Search cafés…" />
+
+                    <select id="status-filter">
+                        <option value="all" title="Show all cafés">All</option>
+                        <option value="checked" title="Only checked">✓</option>
+                        <option value="unchecked" title="Only unchecked">✗</option>
+                    </select>
                 </div>
-
-                <h2>Unchecked Cafés</h2>
-                <div id="unchecked-container"></div>
-
-                <h2>Checked Cafés</h2>
-                <div id="checked-container"></div>
 
                 <div id="cafe-list-container" class="scrollable-list">
                     <!-- Cafe items will be dynamically inserted here by JavaScript -->
