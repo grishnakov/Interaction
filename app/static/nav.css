@@ -266,16 +266,14 @@ nav.content-loaded #nav-view {
 /* Back button styling */
 .back-button {
     border-radius: 50px;
-    border: 1px solid #ccc;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
     background-color: white;
     color: black;
     cursor: pointer;
-    font-weight: 500;
     display: block;
 }
 
 .back-button:hover {
-    background-color: whitesmoke;
+    background-color: rgb(255, 255, 255);
 }
