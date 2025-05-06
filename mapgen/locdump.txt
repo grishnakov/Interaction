@@ -1,0 +1,1231 @@
+[
+  {
+    "name": "Bluestone Lane 55 Hudson Yards Café",
+    "loc": {
+      "lat": 40.755168399999995,
+      "lng": -74.0015389
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.7560893,
+      "lng": -73.99762059999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Enoch's",
+    "loc": {
+      "lat": 40.7562924,
+      "lng": -73.9976557
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Martin's Coffee",
+    "loc": {
+      "lat": 40.7565668,
+      "lng": -73.9978297
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Margay's",
+    "loc": {
+      "lat": 40.756306699999996,
+      "lng": -73.9981878
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Cafe Aroma",
+    "loc": {
+      "lat": 40.7559371,
+      "lng": -73.9941049
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Aleef Cafe",
+    "loc": {
+      "lat": 40.7561758,
+      "lng": -73.9925797
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Corvo Coffee",
+    "loc": {
+      "lat": 40.7569714,
+      "lng": -73.9933947
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.755292,
+      "lng": -73.9945623
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "A's Coffee Spot",
+    "loc": {
+      "lat": 40.7564395,
+      "lng": -73.993372
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Coffee & Crumbs",
+    "loc": {
+      "lat": 40.7552823,
+      "lng": -73.9934476
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Saranda Cafe",
+    "loc": {
+      "lat": 40.7553285,
+      "lng": -73.99346349999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Back Doctor Midtown",
+    "loc": {
+      "lat": 40.75534650000001,
+      "lng": -73.99434149999999
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Bluestone Lane Times Square Coffee Shop",
+    "loc": {
+      "lat": 40.7564652,
+      "lng": -73.98978579999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks Pickup with Amazon Go",
+    "loc": {
+      "lat": 40.7561356,
+      "lng": -73.9903004
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.75534,
+      "lng": -73.98954499999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Corvo Coffee",
+    "loc": {
+      "lat": 40.755102199999996,
+      "lng": -73.9908682
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Posh Pop Bakeshop",
+    "loc": {
+      "lat": 40.755940599999995,
+      "lng": -73.99207059999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Berlina Cafe & Pizza",
+    "loc": {
+      "lat": 40.7553918,
+      "lng": -73.9908612
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.7567565,
+      "lng": -73.9904366
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "starbucks",
+    "loc": {
+      "lat": 40.7564668,
+      "lng": -73.99078089999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "260’s New York",
+    "loc": {
+      "lat": 40.754937999999996,
+      "lng": -73.9906492
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Nathan's Coffee Cart",
+    "loc": {
+      "lat": 40.7558713,
+      "lng": -73.990385
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Puesto de Desayunos",
+    "loc": {
+      "lat": 40.7556519,
+      "lng": -73.99135199999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Cafe Metro",
+    "loc": {
+      "lat": 40.7569282,
+      "lng": -73.9905282
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Cosane Inc",
+    "loc": {
+      "lat": 40.7569545,
+      "lng": -73.990494
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "GOffee",
+    "loc": {
+      "lat": 40.755940599999995,
+      "lng": -73.99207059999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Manhattan",
+    "loc": {
+      "lat": 40.7564269,
+      "lng": -73.9888338
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.756693999999996,
+      "lng": -73.985893
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Jake's at the Knick",
+    "loc": {
+      "lat": 40.755583099999996,
+      "lng": -73.9862701
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Macchiato Espresso & Wine Bar",
+    "loc": {
+      "lat": 40.7570555,
+      "lng": -73.9864838
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Ora's Market",
+    "loc": {
+      "lat": 40.7555149,
+      "lng": -73.986718
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Gregorys Coffee",
+    "loc": {
+      "lat": 40.7558258,
+      "lng": -73.9826362
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Bluestone Lane Bryant Park Coffee Shop",
+    "loc": {
+      "lat": 40.7554698,
+      "lng": -73.9831779
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Gumption Coffee",
+    "loc": {
+      "lat": 40.7569259,
+      "lng": -73.983446
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.7557119,
+      "lng": -73.9843001
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Ground Central Coffee Company",
+    "loc": {
+      "lat": 40.7568882,
+      "lng": -73.98200969999999
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Pavé",
+    "loc": {
+      "lat": 40.756344,
+      "lng": -73.98033699999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.7555695,
+      "lng": -73.98021000000001
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Matto Espresso",
+    "loc": {
+      "lat": 40.7561822,
+      "lng": -73.9797822
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Cafe Manhattan",
+    "loc": {
+      "lat": 40.756250699999995,
+      "lng": -73.98094979999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.756425,
+      "lng": -73.978301
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.7556559,
+      "lng": -73.9783806
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Barnes & Noble Cafe",
+    "loc": {
+      "lat": 40.755693199999996,
+      "lng": -73.9789785
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Macchiato Espresso Bar",
+    "loc": {
+      "lat": 40.7559693,
+      "lng": -73.97831219999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Casaroma Cafe",
+    "loc": {
+      "lat": 40.7552581,
+      "lng": -73.9798874
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Toms N Toms",
+    "loc": {
+      "lat": 40.757277200000004,
+      "lng": -73.9804955
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Sigma International Inc",
+    "loc": {
+      "lat": 40.756741999999996,
+      "lng": -73.9812924
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Bluestone Lane Midtown East Coffee Shop",
+    "loc": {
+      "lat": 40.7564078,
+      "lng": -73.9769018
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.7557605,
+      "lng": -73.9769036
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Revolving Store",
+    "loc": {
+      "lat": 40.7572312,
+      "lng": -73.9769653
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Devon & Blakely",
+    "loc": {
+      "lat": 40.7555245,
+      "lng": -73.9760525
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Light and Sweet",
+    "loc": {
+      "lat": 40.755107599999995,
+      "lng": -73.97656169999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin’ Donuts",
+    "loc": {
+      "lat": 40.756975000000004,
+      "lng": -73.9760609
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.7568562,
+      "lng": -73.9724749
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Manhattan Espresso Cafe",
+    "loc": {
+      "lat": 40.7553583,
+      "lng": -73.9721302
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.755004199999995,
+      "lng": -73.9732167
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Sip & Scoop",
+    "loc": {
+      "lat": 40.756916499999996,
+      "lng": -73.9718646
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Matto Espresso",
+    "loc": {
+      "lat": 40.755018199999995,
+      "lng": -73.9718457
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "CoffyCloudNYC",
+    "loc": {
+      "lat": 40.755647599999996,
+      "lng": -73.9713866
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Blue Bottle Coffee",
+    "loc": {
+      "lat": 40.7531067,
+      "lng": -74.001824
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Think Coffee",
+    "loc": {
+      "lat": 40.7522222,
+      "lng": -74.0016667
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.7535908,
+      "lng": -73.99942430000002
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Bluestone Lane Coffee 30 Hudson Yards",
+    "loc": {
+      "lat": 40.753991,
+      "lng": -74.000118
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Jack's Stir Brew Coffee",
+    "loc": {
+      "lat": 40.7535287,
+      "lng": -74.0011025
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Artly Robot Coffee @ MUJI Hudson Yards",
+    "loc": {
+      "lat": 40.753393599999995,
+      "lng": -74.00105500000001
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Churros",
+    "loc": {
+      "lat": 40.7530467,
+      "lng": -74.0013669
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "In Common NYC - A Breakfast & Brunch Restaurant",
+    "loc": {
+      "lat": 40.753834999999995,
+      "lng": -73.99624299999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Black Fox Coffee",
+    "loc": {
+      "lat": 40.7532346,
+      "lng": -73.99827429999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.752956,
+      "lng": -73.9970249
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.7523775,
+      "lng": -73.99826159999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Hudson 34",
+    "loc": {
+      "lat": 40.7545795,
+      "lng": -73.9984161
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.754107499999996,
+      "lng": -73.9991227
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Non Solo Piada",
+    "loc": {
+      "lat": 40.754075799999995,
+      "lng": -73.99262259999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "ARVACI coffee",
+    "loc": {
+      "lat": 40.754671599999995,
+      "lng": -73.99401859999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Vanilla Gorilla Cafe",
+    "loc": {
+      "lat": 40.7538276,
+      "lng": -73.9925288
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.7526563,
+      "lng": -73.9928243
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.7524083,
+      "lng": -73.9946295
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.752634,
+      "lng": -73.99509390000001
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starstruck Coffee",
+    "loc": {
+      "lat": 40.754176,
+      "lng": -73.9953772
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Trato",
+    "loc": {
+      "lat": 40.7528649,
+      "lng": -73.99324659999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "The People's Cafe",
+    "loc": {
+      "lat": 40.754456499999996,
+      "lng": -73.9932668
+    },
+    "status": "CLOSED_TEMPORARILY"
+  },
+  {
+    "name": "Joy Kitchens",
+    "loc": {
+      "lat": 40.7525512,
+      "lng": -73.99273649999999
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Culture Espresso",
+    "loc": {
+      "lat": 40.753078099999996,
+      "lng": -73.9913242
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.753614899999995,
+      "lng": -73.9892891
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Ground Central Coffee Company",
+    "loc": {
+      "lat": 40.75300910000001,
+      "lng": -73.9898267
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Gregorys Coffee",
+    "loc": {
+      "lat": 40.753614999999996,
+      "lng": -73.9920415
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Ramini Espresso & cafe",
+    "loc": {
+      "lat": 40.7540845,
+      "lng": -73.9916851
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Le Cafe Coffee",
+    "loc": {
+      "lat": 40.753066499999996,
+      "lng": -73.98883889999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.7540474,
+      "lng": -73.99123530000001
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.7527125,
+      "lng": -73.9890961
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Double Shots",
+    "loc": {
+      "lat": 40.7534164,
+      "lng": -73.99119569999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Black Cup Coffee",
+    "loc": {
+      "lat": 40.753307199999995,
+      "lng": -73.99064729999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Kaffe",
+    "loc": {
+      "lat": 40.7537531,
+      "lng": -73.99183769999999
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Ten Thousand Coffee",
+    "loc": {
+      "lat": 40.7532395,
+      "lng": -73.9869855
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "La Colombe Coffee Workshop",
+    "loc": {
+      "lat": 40.753574799999996,
+      "lng": -73.9855053
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Le Cafe Coffee",
+    "loc": {
+      "lat": 40.7544276,
+      "lng": -73.9865043
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.754357999999996,
+      "lng": -73.9872761
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Bluestone Lane Garment District Coffee Shop",
+    "loc": {
+      "lat": 40.7524811,
+      "lng": -73.98795249999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.752645699999995,
+      "lng": -73.98611989999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Cook Eatery",
+    "loc": {
+      "lat": 40.7537161,
+      "lng": -73.98684999999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Coffee @ 5BP",
+    "loc": {
+      "lat": 40.753988299999996,
+      "lng": -73.9854888
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Desayunos manhattan",
+    "loc": {
+      "lat": 40.7544848,
+      "lng": -73.9875557
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Suprema Empanada Food Cart",
+    "loc": {
+      "lat": 40.752894999999995,
+      "lng": -73.9875692
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Fujiissa",
+    "loc": {
+      "lat": 40.7530225,
+      "lng": -73.9861561
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Blue Bottle Coffee",
+    "loc": {
+      "lat": 40.75306,
+      "lng": -73.984123
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Joe Coffee Company",
+    "loc": {
+      "lat": 40.753461099999996,
+      "lng": -73.9843072
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Amy's Bread Café NYPL",
+    "loc": {
+      "lat": 40.7528708,
+      "lng": -73.9825042
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.7523763,
+      "lng": -73.9844592
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Tomiz Cafe",
+    "loc": {
+      "lat": 40.7540683,
+      "lng": -73.984905
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Coffee Near Me",
+    "loc": {
+      "lat": 40.752742,
+      "lng": -73.98348510000001
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "EspressoWorks",
+    "loc": {
+      "lat": 40.752687699999996,
+      "lng": -73.9842426
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "The Clock Coffee Shop",
+    "loc": {
+      "lat": 40.7535575,
+      "lng": -73.9781361
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Cha Cha Matcha (Bryant Park)",
+    "loc": {
+      "lat": 40.7532555,
+      "lng": -73.98084829999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.753901,
+      "lng": -73.97869299999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.7532243,
+      "lng": -73.9807721
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.7529549,
+      "lng": -73.98106179999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Bluestone Lane 330 Madison Avenue",
+    "loc": {
+      "lat": 40.7532199,
+      "lng": -73.97980559999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Cafe 346",
+    "loc": {
+      "lat": 40.7543453,
+      "lng": -73.97856039999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Coffee @ 521 5th",
+    "loc": {
+      "lat": 40.7541602,
+      "lng": -73.9797975
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "HTH Tabletime",
+    "loc": {
+      "lat": 40.753087,
+      "lng": -73.9803024
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Sea Level Cafe",
+    "loc": {
+      "lat": 40.753649599999996,
+      "lng": -73.9781421
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Ground Central Coffee Company",
+    "loc": {
+      "lat": 40.752885299999996,
+      "lng": -73.97482
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "{petite} maman",
+    "loc": {
+      "lat": 40.7540835,
+      "lng": -73.9760364
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Moka Matcha - Vanderbilt Market",
+    "loc": {
+      "lat": 40.754372,
+      "lng": -73.97618299999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Joe Coffee Company",
+    "loc": {
+      "lat": 40.7527277,
+      "lng": -73.97723529999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.7532857,
+      "lng": -73.97760559999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Jack's Stir Brew Coffee",
+    "loc": {
+      "lat": 40.753701,
+      "lng": -73.9766386
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Wonderen Stroopwafels Café",
+    "loc": {
+      "lat": 40.7527277,
+      "lng": -73.97723529999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.754455,
+      "lng": -73.9760113
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Coffee Table",
+    "loc": {
+      "lat": 40.7521571,
+      "lng": -73.9760807
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "BROWNSVILLE ROASTER",
+    "loc": {
+      "lat": 40.752516899999996,
+      "lng": -73.9774935
+    },
+    "status": "CLOSED_TEMPORARILY"
+  },
+  {
+    "name": "fadyaadwords8",
+    "loc": {
+      "lat": 40.754086799999996,
+      "lng": -73.97609109999999
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Little Collins",
+    "loc": {
+      "lat": 40.7523639,
+      "lng": -73.97351139999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Ten Thousand Coffee",
+    "loc": {
+      "lat": 40.7537472,
+      "lng": -73.9726074
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.753774,
+      "lng": -73.9741542
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "dae day coffee",
+    "loc": {
+      "lat": 40.7541483,
+      "lng": -73.9739307
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.754169999999995,
+      "lng": -73.971738
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Cafe Metro",
+    "loc": {
+      "lat": 40.7537583,
+      "lng": -73.9740911
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.7525742,
+      "lng": -73.9734443
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Cafetería",
+    "loc": {
+      "lat": 40.7535923,
+      "lng": -73.9709922
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Silo Cafe",
+    "loc": {
+      "lat": 40.754162199999996,
+      "lng": -73.9722168
+    },
+    "status": "CLOSED_TEMPORARILY"
+  }
+][
+  {
+    "name": "Frankis Cafe",
+    "loc": {
+      "lat": 40.751657099999996,
+      "lng": -74.0071579
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "La Colombe Coffee Roasters",
+    "loc": {
+      "lat": 40.7516044,
+      "lng": -74.00530669999999
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.75162050000001,
+      "lng": -73.99654799999999
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Cafe Bravo",
+    "loc": {
+      "lat": 40.7508833,
+      "lng": -73.9978823
+    },
+    "status": "OPERATIONAL"
+  }
+][
+  {
+    "name": "Cha Cha Matcha (MOYNIHAN)",
+    "loc": {
+      "lat": 40.7511994,
+      "lng": -73.9953871
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Birch Coffee",
+    "loc": {
+      "lat": 40.750729,
+      "lng": -73.9952215
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Starbucks",
+    "loc": {
+      "lat": 40.7510125,
+      "lng": -73.9927056
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Dunkin'",
+    "loc": {
+      "lat": 40.7505828,
+      "lng": -73.9934992
+    },
+    "status": "OPERATIONAL"
+  },
+  {
+    "name": "Keddy’s Cafe",
+    "loc": {
+      "lat": 40.7498097,
+      "lng": -73.99478429999999
+    },
+    "status": "OPERATIONAL"
+  }
+]

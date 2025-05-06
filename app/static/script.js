@@ -33,6 +33,33 @@ const map = L.map("map", {
 // 4) Overlay your SVG
 L.imageOverlay("static/map.svg", imgBounds).addTo(map);
 
+//NEW TO RENDER THE CAFES
+
+fetch('static/cafes.json')
+  .then(r => r.json())
+  .then(cafes => {
+    cafes.forEach(cafe => {
+      // choose class based on status
+      const cls = cafe.status === 'OPERATIONAL'
+        ? 'cafe-ok'
+        : 'cafe-down';
+
+      // create and show a tooltip at [lat,lng], no offset
+      L.tooltip({
+        permanent: true,
+        direction: 'center',   // puts the text exactly at the point
+        className: `cafe-label ${cls}`,
+        offset: [0, 0]
+      })
+      .setLatLng([cafe.lat, cafe.lng])
+      .setContent(cafe.name)
+      .addTo(map);
+    });
+  })
+  .catch(err => console.error(err));
+
+
+
 // 5) Prepare the user marker (hidden until we get a fix)
 const userIcon = L.icon({
   iconUrl: 'icon.png',   // your image path
