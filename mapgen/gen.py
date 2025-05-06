@@ -2,51 +2,57 @@ import requests, base64
 import os
 from dotenv import load_dotenv
 
+load_dotenv()
 # ─── Configuration ─────────────────────────────────────────────────────────────
 API_KEY = os.getenv("KEY")
-CENTER = "40.7831,-73.9712"  # Approximate center of Manhattan
-ZOOM = 13  # Street‑level detail
-SIZE = "800x800"  # Output image size in pixels
-SCALE = 2  # High‑DPI support (1 or 2)
+SIZE = "600x1200"  # Portrait layout: narrow and tall
+SCALE = 2  # High‑DPI support
 
-# Style: hide everything except roads, drawn in black
+# Bounding‑box corners for Manhattan Island (north‑west & south‑east)
+VISIBLE_CORNERS = [
+    "40.8776,-74.0193",  # northwest corner :contentReference[oaicite:3]{index=3}
+    "40.6998,-73.9104",  # southeast corner :contentReference[oaicite:4]{index=4}
+]
+
 STYLE = [
     "feature:all|element:labels|visibility:off",
     "feature:road|element:geometry|color:0x000000",
     "feature:road|element:labels|visibility:off",
 ]
 
-# Construct the Static Maps API URL
-base_url = "https://maps.googleapis.com/maps/api/staticmap"
+# ─── Build Request ─────────────────────────────────────────────────────────────
+url = "https://maps.googleapis.com/maps/api/staticmap"
 params = {
-    "center": CENTER,
-    "zoom": ZOOM,
-    "size": SIZE,
+    "size": SIZE,  # portrait size :contentReference[oaicite:5]{index=5}
     "scale": SCALE,
     "maptype": "roadmap",
-    "key": API_KEY,
+    "key": API_KEY,  # include your API key :contentReference[oaicite:6]{index=6}
 }
 # Add each style rule
-for style_rule in STYLE:
-    params.setdefault("style", []).append(style_rule)
+for rule in STYLE:
+    params.setdefault("style", []).append(rule)
+# Add visible corners to constrain viewport
+for corner in VISIBLE_CORNERS:
+    params.setdefault("visible", []).append(
+        corner
+    )  # ensures only Manhattan :contentReference[oaicite:7]{index=7}
 
-# Fetch the PNG map
-response = requests.get(base_url, params=params)
+# ─── Fetch & Wrap in SVG ───────────────────────────────────────────────────────
+response = requests.get(url, params=params)
 response.raise_for_status()
 png_data = response.content
 
-# Encode PNG as Base64 for embedding in SVG
+# Encode as Base64 and build SVG
 b64_png = base64.b64encode(png_data).decode("ascii")
-data_uri = f"data:image/png;base64,{b64_png}"  # Data URI scheme :contentReference[oaicite:3]{index=3}
+data_uri = f"data:image/png;base64,{b64_png}"
+w, h = SIZE.split("x")
+svg = (
+    f'<svg xmlns="http://www.w3.org/2000/svg" width="{w}" height="{h}">'
+    f'<image width="{w}" height="{h}" href="{data_uri}" />'
+    "</svg>"
+)
 
-# Build the SVG wrapper
-width, height = SIZE.split("x")
-svg_template = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="{height}">
-  <image width="{width}" height="{height}" href="{data_uri}" />
-</svg>'''  # SVG <image> element supports PNG embedding :contentReference[oaicite:4]{index=4}
+with open("manhattan_island_vertical.svg", "w") as f:
+    f.write(svg)
 
-# Write to file
-with open("manhattan_map.svg", "w") as f:
-    f.write(svg_template)
-
-print("Generated manhattan_map.svg")
+print("Generated manhattan_island_vertical.svg")
