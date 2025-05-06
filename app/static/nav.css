@@ -135,8 +135,9 @@ nav.content-loaded #nav-view {
 
 /* loginpage */
 
-#about-view h2 {
-    text-transform: capitalize;
+#about-view img {
+    width: 100%;
+    rotate: -20deg;
 }
 
 /* Add to app/static/nav.css (or style.css) */
