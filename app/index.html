@@ -19,6 +19,7 @@
 </head>
 
 <!-- index.html -->
+
 <body>
     <input type="checkbox" id="nav-toggle" class="nav-toggle" />
 
@@ -27,73 +28,185 @@
     </label>
 
     <!-- The <nav> element itself -->
-        <nav>
-            <!-- The list of links (will be hidden/shown) -->
-            <ul>
-                <li><a href="#login" class="nav-link" data-target="login-view">Log in</a></li>
-                <li><a href="#list" class="nav-link" data-target="list-view">Cafe Collection</a></li>
-                <li><a href="#addgem" class="nav-link" data-target="addgem-view">Add a new GEM</a></li>
-                <li><a href="#about" class="nav-link" data-target="about-view">About</a></li>
-            </ul>
-        
-            <!-- The content area -->
-            <div id="nav-view">
-                <!-- Default view (shown when no content is loaded) -->
-                <div id="default-view" class="content-section active">
-                    <h2>Welcome!</h2>
-                    <p>Select something from the menu.</p>
-                </div>
-                
-                <!-- Login view (hidden by default) -->
-                <div id="login-view" class="content-section">
-                    <button class="back-button">← Back to menu</button>
-                    <div class="login-container">
-                        <form action="/login" method="post" id="login-form">
-                            <input class="nav-input" type="text" name="username" placeholder="Username" required>
-                            <input class="nav-input" type="password" name="password" placeholder="Password" required>
-                            <button class="nav-button" type="submit">Log In</button>
-                            <div class="login-error-message"></div>
-                        </form>
-                        <div class="signup-section">
-                            <button class="nav-button" type="button" data-target="signup-view">Sign Up</button>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Add other content sections similarly -->
-                <div id="list-view" class="content-section">
-                    <button class="back-button">← Back to menu</button>
-                    <h2>Cafe Collection</h2>
-                    <p>List of cafes goes here...</p>
-                </div>
-                
-                <div id="addgem-view" class="content-section">
-                    <button class="back-button">← Back to menu</button>
-                    <h2>Add New GEM</h2>
-                    <form>
-                        <input class="nav-input" type="text" placeholder="Cafe name">
-                        <button class="nav-button" type="submit">Add</button>
-                    </form>
-                </div>
-                
-                <div id="about-view" class="content-section">
-                    <button class="back-button">← Back to menu</button>
-                    <h2>About</h2>
-                    <p>This is the about section...</p>
-                </div>
-                
-                <div id="signup-view" class="content-section">
-                    <button class="back-button">← Back to menu</button>
-                    <h2>Sign Up</h2>
-                    <form action="/signup" method="post">
+    <nav>
+        <!-- The list of links (will be hidden/shown) -->
+        <ul>
+            <li><a href="#login" class="nav-link" data-target="login-view">Log in</a></li>
+            <li><a href="#list" class="nav-link" data-target="list-view">Cafe Collection</a></li>
+            <li><a href="#addgem" class="nav-link" data-target="addgem-view">Add a new GEM</a></li>
+            <li><a href="#about" class="nav-link" data-target="about-view">About</a></li>
+        </ul>
+
+        <!-- The content area -->
+        <div id="nav-view">
+            <!-- Default view (shown when no content is loaded) -->
+            <div id="default-view" class="content-section active">
+                <h2>Welcome!</h2>
+                <p>Select something from the menu.</p>
+            </div>
+
+            <!-- Login view (hidden by default) -->
+            <div id="login-view" class="content-section">
+                <button class="back-button">← Back to menu</button>
+                <div class="login-container">
+                    <form action="/login" method="post" id="login-form">
                         <input class="nav-input" type="text" name="username" placeholder="Username" required>
                         <input class="nav-input" type="password" name="password" placeholder="Password" required>
-                        <button class="nav-button" type="submit">Sign Up</button>
+                        <button class="nav-button" type="submit">Log In</button>
+                        <div class="login-error-message"></div>
                     </form>
+                    <div class="signup-section">
+                        <button class="nav-button" type="button" data-target="signup-view">Sign Up</button>
+                    </div>
                 </div>
             </div>
-        </nav>
-        
+
+            <!-- Add other content sections similarly -->
+            <div id="list-view" class="content-section">
+                <button class="back-button">←</button>
+                <h2>Cafe Collection</h2>
+                <input type="checkbox" id="checkbox" name="ariston-cafe" value="Ariston Cafe">
+                <label for="checkbox">Ariston Cafe</label><br>
+
+                <input type="checkbox" id="checkbox" name="blank-street-coffee" value="Blank Street Coffee">
+                <label for="checkbox">Blank Street Coffee</label><br>
+
+                <input type="checkbox" id="checkbox" name="breads-bakery" value="Breads Bakery">
+                <label for="checkbox">Breads Bakery</label><br>
+
+                <input type="checkbox" id="checkbox" name="blue-stripes" value="Blue stripes">
+                <label for="checkbox">Blue stripes</label><br>
+
+                <input type="checkbox" id="checkbox" name="caffe-reggio" value="Caffe Reggio">
+                <label for="checkbox">Caffe Reggio</label><br>
+
+                <input type="checkbox" id="checkbox" name="cafe-hugo" value="Cafe Hugo">
+                <label for="checkbox">Cafe Hugo</label><br>
+
+                <input type="checkbox" id="checkbox" name="cafe-lyria" value="Cafe Lyria">
+                <label for="checkbox">Cafe Lyria</label><br>
+
+                <input type="checkbox" id="checkbox" name="capital-one-cafe" value="Capital One Cafe">
+                <label for="checkbox">Capital One Cafe</label><br>
+
+                <input type="checkbox" id="checkbox" name="coffee-rx" value="Coffee Rx">
+                <label for="checkbox">Coffee Rx</label><br>
+
+                <input type="checkbox" id="checkbox" name="cup-soul-coffee" value="Cup Soul Coffee">
+                <label for="checkbox">Cup Soul Coffee</label><br>
+
+                <input type="checkbox" id="checkbox" name="devocion" value="Devoción">
+                <label for="checkbox">Devoción</label><br>
+
+                <input type="checkbox" id="checkbox" name="everyman-coffee" value="Everyman Coffee">
+                <label for="checkbox">Everyman Coffee</label><br>
+
+                <input type="checkbox" id="checkbox" name="gasoline-alley-coffee" value="Gasoline Alley Coffee">
+                <label for="checkbox">Gasoline Alley Coffee</label><br>
+
+                <input type="checkbox" id="checkbox" name="goat-cafe" value="G.O.A.T. Cafe">
+                <label for="checkbox">G.O.A.T. Cafe</label><br>
+
+                <input type="checkbox" id="checkbox" name="gregorys-coffee" value="Gregorys Coffee">
+                <label for="checkbox">Gregorys Coffee</label><br>
+
+                <input type="checkbox" id="checkbox" name="joe-and-the-juice" value="Joe & the Juice">
+                <label for="checkbox">Joe & the Juice</label><br>
+
+                <input type="checkbox" id="checkbox" name="joe-coffee-company" value="Joe Coffee Company">
+                <label for="checkbox">Joe Coffee Company</label><br>
+
+                <input type="checkbox" id="checkbox" name="la-colombe-coffee-workshop"
+                    value="La Colombe Coffee Workshop">
+                <label for="checkbox">La Colombe Coffee Workshop</label><br>
+
+                <input type="checkbox" id="checkbox" name="le-cafe-coffee" value="Le Cafe Coffee">
+                <label for="checkbox">Le Cafe Coffee</label><br>
+
+                <input type="checkbox" id="checkbox" name="le-pain-quotidien" value="Le Pain Quotidien">
+                <label for="checkbox">Le Pain Quotidien</label><br>
+
+                <input type="checkbox" id="checkbox" name="lucky-lucky-cafe" value="Lucky Lucky Cafe">
+                <label for="checkbox">Lucky Lucky Cafe</label><br>
+
+                <input type="checkbox" id="checkbox" name="madman-espresso" value="Madman Espresso">
+                <label for="checkbox">Madman Espresso</label><br>
+
+                <input type="checkbox" id="checkbox" name="maman-cafe" value="Maman Cafe">
+                <label for="checkbox">Maman Cafe</label><br>
+
+                <input type="checkbox" id="checkbox" name="mori-coffee" value="Mori Coffee">
+                <label for="checkbox">Mori Coffee</label><br>
+
+                <input type="checkbox" id="checkbox" name="newsbar-cafe" value="NewsBar Cafe">
+                <label for="checkbox">NewsBar Cafe</label><br>
+
+                <input type="checkbox" id="checkbox" name="outro-nyc" value="Outro nyc">
+                <label for="checkbox">Outro nyc</label><br>
+
+                <input type="checkbox" id="checkbox" name="pret-a-manger" value="Pret A Manger">
+                <label for="checkbox">Pret A Manger</label><br>
+
+                <input type="checkbox" id="checkbox" name="sammy-l-coffee" value="Sammy L Coffee">
+                <label for="checkbox">Sammy L Coffee</label><br>
+
+                <input type="checkbox" id="checkbox" name="spring-cafe-aspen" value="Spring Cafe Aspen">
+                <label for="checkbox">Spring Cafe Aspen</label><br>
+
+                <input type="checkbox" id="checkbox" name="starbucks" value="Starbucks">
+                <label for="checkbox">Starbucks</label><br>
+
+                <input type="checkbox" id="checkbox" name="stumptown-coffee-roasters" value="Stumptown Coffee Roasters">
+                <label for="checkbox">Stumptown Coffee Roasters</label><br>
+
+                <input type="checkbox" id="checkbox" name="tartinery-cafe-bar" value="Tartinery Cafe-Bar">
+                <label for="checkbox">Tartinery Cafe-Bar</label><br>
+
+                <input type="checkbox" id="checkbox" name="the-bean" value="The Bean">
+                <label for="checkbox">The Bean</label><br>
+
+                <input type="checkbox" id="checkbox" name="the-grey-dog" value="The Grey Dog">
+                <label for="checkbox">The Grey Dog</label><br>
+
+                <input type="checkbox" id="checkbox" name="the-uncommons" value="The Uncommons">
+                <label for="checkbox">The Uncommons</label><br>
+
+                <input type="checkbox" id="checkbox" name="think-coffee" value="Think Coffee">
+                <label for="checkbox">Think Coffee</label><br>
+
+                <input type="checkbox" id="checkbox" name="tompkins-square-bagels" value="Tompkins Square Bagels">
+                <label for="checkbox">Tompkins Square Bagels</label><br>
+
+
+            </div>
+
+            <div id="addgem-view" class="content-section">
+                <button class="back-button">← Back to menu</button>
+                <h2>Add New GEM</h2>
+                <form>
+                    <input class="nav-input" type="text" placeholder="Cafe name">
+                    <button class="nav-button" type="submit">Add</button>
+                </form>
+            </div>
+
+            <div id="about-view" class="content-section">
+                <button class="back-button">← Back to menu</button>
+                <h2>About</h2>
+                <p>This is the about section...</p>
+            </div>
+
+            <div id="signup-view" class="content-section">
+                <button class="back-button">← Back to menu</button>
+                <h2>Sign Up</h2>
+                <form action="/signup" method="post">
+                    <input class="nav-input" type="text" name="username" placeholder="Username" required>
+                    <input class="nav-input" type="password" name="password" placeholder="Password" required>
+                    <button class="nav-button" type="submit">Sign Up</button>
+                </form>
+            </div>
+        </div>
+    </nav>
+
 
     <div id="main">
         <div id="map" style="width:100%;"></div>
@@ -102,7 +215,7 @@
     <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
     <!-- Make sure script.js is loaded AFTER the DOM elements exist -->
     <script src="static/script.js" async defer></script>
-    
+
 </body>
 
 

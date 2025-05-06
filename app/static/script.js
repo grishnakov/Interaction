@@ -31,7 +31,7 @@ const map = L.map("map", {
 });
 
 // 4) Overlay your SVG
-L.imageOverlay("/static/map.svg", imgBounds).addTo(map);
+L.imageOverlay("static/map.svg", imgBounds).addTo(map);
 
 // 5) Prepare the user marker (hidden until we get a fix)
 const userMarker = L.circleMarker([0, 0], {
