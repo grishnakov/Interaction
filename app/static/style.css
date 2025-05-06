@@ -100,21 +100,4 @@
 }
 
 /* status classes */
-.cafe-ok {
-    color: black;
-}
 
-.cafe-down {
-    color: gray;
-    opacity: 0.6;
-}
-
-.cafe-label {
-    font-size: 8px;
-    line-height: 11px;
-    width: 12px;
-    height: 20px;
-    font-family: Arial, Helvetica, sans-serif;
-    pointer-events: none;
-
-}

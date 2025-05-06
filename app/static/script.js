@@ -19,11 +19,19 @@ const imgBounds = L.latLngBounds(
   L.latLng(latNorth, lonEast),
 );
 
-// 3) Create the map **with a default center+zoom** (we'll override below)
+
+//NEW TO RENDER THE CAFES
+const BASE_FONT_SIZE = 2; // The font size (e.g., 12px) at your REFERENCE_ZOOM
+let REFERENCE_ZOOM; // Will be set when labels are first drawn
+
+// 2) Compute your imgBounds exactly as before
+// ... (imgBounds calculation) ...
+
+// 3) Create the map
 const map = L.map("map", {
   center: imgBounds.getCenter(),
   attributionControl: false,
-  zoom: 12,
+  zoom: 12, // Initial map zoom
   minZoom: 14,
   maxZoom: 24,
   maxBounds: imgBounds.pad(0.05),
@@ -33,35 +41,91 @@ const map = L.map("map", {
 // 4) Overlay your SVG
 L.imageOverlay("static/map.svg", imgBounds).addTo(map);
 
-//NEW TO RENDER THE CAFES
+// NEW TO RENDER THE CAFES
+map.createPane("svgLabels");
+map.getPane("svgLabels").style.pointerEvents = "none";
 
-fetch('static/cafes.json')
-  .then(r => r.json())
-  .then(cafes => {
-    cafes.forEach(cafe => {
-      // pick a CSS class or image URL per status
-      const cls = cafe.status === 'OPERATIONAL'
-        ? 'cafe-ok'
-        : 'cafe-down';
+L.svg({ pane: "svgLabels" }).addTo(map);
+const svg = map.getPanes().svgLabels.querySelector("svg");
+const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+// No 'leaflet-zoom-animated' here, scaling is handled by parent svg or manually
+svg.appendChild(g);
 
-      // 1) Create a DivIcon whose HTML never scales
-      const labelIcon = L.divIcon({
-        className: `cafe-label ${cls}`,
-        html: `<span>${cafe.name}</span>`,
-        iconSize: null,          // auto-size to the span
-        iconAnchor: [0, 0],      // tweak to center it if you like
-        // NOTE: divIcons live in the markerPane by default
-      });
+fetch("static/cafes.json")
+  .then((r) => r.json())
+  .then((cafes) => {
+    cafes.forEach((cafe) => {
+      const point = map.latLngToLayerPoint([cafe.lat, cafe.lng]);
+      const txt = document.createElementNS(
+        "http://www.w3.org/2000/svg",
+        "text",
+      );
+      txt.setAttribute("x", point.x);
+      txt.setAttribute("y", point.y);
+      txt.setAttribute("dy", "-0.6em");
+      txt.setAttribute("text-anchor", "middle");
+      txt.textContent = cafe.name;
+      txt.classList.add(
+        cafe.status === "OPERATIONAL" ? "cafe-ok" : "cafe-down",
+      );
 
-      // 2) Drop a marker with that icon (non-interactive so clicks pass through)
-      L.marker([cafe.lat, cafe.lng], {
-        icon: labelIcon,
-        interactive: false
-      }).addTo(map);
+      // Set initial font size (optional if CSS handles it, but good for consistency)
+      txt.setAttribute("font-size", BASE_FONT_SIZE);
+
+      g.appendChild(txt);
     });
-  })
-  .catch(err => console.error(err));
 
+    // Capture the zoom level at which the initial font sizes are set
+    if (REFERENCE_ZOOM === undefined) {
+      REFERENCE_ZOOM = map.getZoom();
+    }
+
+    // Function to update label positions
+    function updateLabelPositions() {
+      g.querySelectorAll("text").forEach((txt, i) => {
+        // Ensure cafes array is accessible if you need to re-access cafe data
+        // For this specific function, if only index 'i' is not enough,
+        // you might need to re-fetch or ensure 'cafes' is available in this scope.
+        // Assuming 'cafes' array from the fetch closure is still accessible:
+        if (cafes && cafes[i]) {
+          const cafe = cafes[i];
+          const pt = map.latLngToLayerPoint([cafe.lat, cafe.lng]);
+          txt.setAttribute("x", pt.x);
+          txt.setAttribute("y", pt.y);
+        }
+      });
+    }
+
+    // Function to update label styles (specifically font size for scaling)
+    function updateLabelStyles() {
+      if (typeof REFERENCE_ZOOM === "undefined") {
+        // Not ready yet, or map not fully initialized
+        console.warn("REFERENCE_ZOOM for label scaling is not set.");
+        return;
+      }
+
+      const currentZoom = map.getZoom();
+      const scale = map.getZoomScale(currentZoom, REFERENCE_ZOOM);
+
+      g.querySelectorAll("text").forEach((txt) => {
+        const newFontSize = BASE_FONT_SIZE * scale;
+        txt.setAttribute("font-size", newFontSize);
+      });
+    }
+
+    // Initial positioning and styling
+    updateLabelPositions();
+    updateLabelStyles();
+
+    // e) On zoom/pan, re‑project and re-style labels:
+    map.on("zoomend viewreset", () => {
+      // Use zoomend for styles to avoid rapid updates during zoom animation
+      updateLabelPositions();
+      updateLabelStyles();
+    });
+    map.on("moveend", updateLabelPositions); // Update positions on pan
+  })
+  .catch(console.error);
 
 // 5) Prepare the user marker (hidden until we get a fix)
 const userIcon = L.icon({
