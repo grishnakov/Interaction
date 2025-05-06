@@ -34,13 +34,15 @@ const map = L.map("map", {
 L.imageOverlay("static/map.svg", imgBounds).addTo(map);
 
 // 5) Prepare the user marker (hidden until we get a fix)
-const userMarker = L.circleMarker([0, 0], {
-  radius: 8,
-  fillColor: "#FFFFFF",
-  color: "#fff",
-  weight: 2,
-  fillOpacity: 0.8,
-}).addTo(map);
+const userIcon = L.icon({
+  iconUrl: 'icon.png',   // your image path
+  iconSize: [32, 32],              // size in pixels
+  iconAnchor: [16, 16],              // point of the icon that maps to the marker’s latlng
+  popupAnchor: [0, -16]               // where popups point, relative to iconAnchor
+});
+
+const userMarker = L.marker([0, 0], { icon: userIcon })
+  .addTo(map);
 
 // 6) Helper: on first GPS fix, center the map there
 function onInitialPosition(pos) {

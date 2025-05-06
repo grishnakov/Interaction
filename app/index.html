@@ -8,7 +8,7 @@
     <title></title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://use.typekit.net/deh8sie.css">
+    <link rel="stylesheet" href="https://use.typekit.net/jyc5zyn.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     <link rel="stylesheet" href="static/style.css">
     <link rel="stylesheet" href="static/nav.css" />
@@ -18,18 +18,20 @@
     <link rel="manifest" href="static/site.webmanifest">
 </head>
 
-<!-- index.html -->
-
 <body>
+
     <input type="checkbox" id="nav-toggle" class="nav-toggle" />
 
     <label for="nav-toggle" class="nav-toggle-label">
         <span></span>
     </label>
 
+
+    <!-- <img src="stick.png" alt="coffee stick"> -->
+
     <!-- The <nav> element itself -->
     <nav>
-        <!-- The list of links (will be hidden/shown) -->
+        <!-- The list of li>nks (will be hidden/shown) -->
         <ul>
             <li><a href="#list" class="nav-link" data-target="list-view">Cafe Collection</a></li>
             <li><a href="#login" class="nav-link" data-target="login-view">Log in</a></li>
@@ -37,15 +39,11 @@
             <li><a href="#about" class="nav-link" data-target="about-view">About</a></li>
         </ul>
 
-        <!-- The content area -->
         <div id="nav-view">
-            <!-- Default view (shown when no content is loaded) -->
-            <!-- <div id="default-view" class="content-section active">
-                <h2>Welcome!</h2>
-                <p>Select something from the menu.</p>
-            </div> -->
 
-            <!-- Add other content sections similarly -->
+            <div id="default-view" class="content-section active">
+            </div>
+
             <div id="list-view" class="content-section">
                 <button class="back-button">←</button>
                 <h2>Cafe Collection</h2>
@@ -188,8 +186,9 @@
 
             <div id="about-view" class="content-section">
                 <button class="back-button">← Back to menu</button>
-                <h2>About</h2>
-                <p>This is the about section...</p>
+                <h3>Introducing</h3>
+                <h2>Open culture.</h2>
+                <p>We are an online collective of best coffee shops and cafe's to visit in new york. </p>
             </div>
 
             <div id="signup-view" class="content-section">
