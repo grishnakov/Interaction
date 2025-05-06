@@ -1,3 +1,6 @@
+// static/script.js
+
+// ... (imgWidth, imgHeight, anchorPx, etc. - all initial map setup code remains the same) ...
 const imgWidth = 6583,
   imgHeight = 16838;
 const anchorPx = [3048, 11835];
@@ -37,25 +40,17 @@ map.createPane("svgLabels");
 map.getPane("svgLabels").style.pointerEvents = "none";
 
 L.svg({ pane: "svgLabels" }).addTo(map);
-const svgMapRoot = map.getPanes().svgLabels.querySelector("svg"); // Renamed for clarity
-const gSvgGroup = document.createElementNS("http://www.w3.org/2000/svg", "g"); // Renamed for clarity
+const svgMapRoot = map.getPanes().svgLabels.querySelector("svg");
+const gSvgGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
 svgMapRoot.appendChild(gSvgGroup);
 
-// Helper function to generate slugs (ensure this is identical to the one in your HTML/DOM script)
-// Ensure this exact function is in BOTH list.js AND script.js
-function generateCafeSlug(name) {
-  return name
-    .replace(/[^a-zA-Z0-9\s-]/g, "")
-    .trim()
-    .replace(/\s+/g, "-")
-    .toLowerCase();
-}
-
+// Helper function to generate slugs (if needed for other parts of script.js)
+// function generateCafeSlug(name) { ... } // Keep if used elsewhere in this file
 
 fetch("static/cafes.json")
   .then((r) => r.json())
   .then((cafes) => {
-    cafes.forEach((cafe, index) => {
+    cafes.forEach((cafe, index) => { // We still iterate all cafes to put them on the map
       const point = map.latLngToLayerPoint([cafe.lat, cafe.lng]);
       const txt = document.createElementNS(
         "http://www.w3.org/2000/svg",
@@ -67,10 +62,13 @@ fetch("static/cafes.json")
       txt.setAttribute("text-anchor", "middle");
       txt.textContent = cafe.name;
 
-      // Create a unique ID for linking with checkboxes
-      const cafeSlug = generateCafeSlug(cafe.name);
-      const uniqueMapId = `${cafeSlug}-${index}`;
-      txt.setAttribute("data-map-id", uniqueMapId); // Used for selection
+      // Add data-cafe-name attribute for group selection
+      txt.setAttribute("data-cafe-name", cafe.name);
+
+      // Optional: keep unique instance ID if needed for other features
+      // const cafeSlug = generateCafeSlug(cafe.name); // Assuming generateCafeSlug is defined
+      // const uniqueMapId = `${cafeSlug}-${index}`;
+      // txt.setAttribute("data-map-id", uniqueMapId);
 
       txt.classList.add(
         cafe.status === "OPERATIONAL" ? "cafe-ok" : "cafe-down",
@@ -84,8 +82,11 @@ fetch("static/cafes.json")
     }
 
     function updateLabelPositions() {
+      // This function might need adjustment if you were relying on the 'i' index
+      // to directly map to the 'cafes' array and now want to update based on 'data-cafe-name'
+      // For now, assuming 'cafes' array order matches the order of 'text' elements in gSvgGroup
       gSvgGroup.querySelectorAll("text").forEach((txt, i) => {
-        if (cafes && cafes[i]) {
+        if (cafes && cafes[i]) { // This assumes the order of text elements matches the cafes array
           const cafe = cafes[i];
           const pt = map.latLngToLayerPoint([cafe.lat, cafe.lng]);
           txt.setAttribute("x", pt.x);
@@ -118,34 +119,46 @@ fetch("static/cafes.json")
   })
   .catch(console.error);
 
-// Function to be called by checkbox event listeners
-window.updateCafeHighlightOnMap = function (mapId, isChecked) {
+// MODIFIED: Function to be called by checkbox event listeners
+// It now accepts cafeName instead of mapId
+window.updateCafeHighlightOnMap = function (cafeName, isChecked) {
   if (!gSvgGroup) {
     console.error(
       "SVG group 'gSvgGroup' not found for updating cafe highlight.",
     );
     return;
   }
-  const cafeTextElement = gSvgGroup.querySelector(
-    `text[data-map-id="${mapId}"]`,
+
+  // Find all text elements with the matching data-cafe-name
+  // Note: If cafeName can contain quotes, this selector might need escaping.
+  // A more robust way is to iterate and check dataset.cafeName.
+  const cafeTextElements = gSvgGroup.querySelectorAll(
+    `text[data-cafe-name="${cafeName.replace(/"/g, '\\"')}"]`, // Basic escaping for double quotes
   );
-  if (cafeTextElement) {
-    if (isChecked) {
-      cafeTextElement.classList.add("cafe-selected-highlight");
-    } else {
-      cafeTextElement.classList.remove("cafe-selected-highlight");
-    }
+
+
+  if (cafeTextElements.length > 0) {
+    cafeTextElements.forEach(textElement => {
+      if (isChecked) {
+        textElement.classList.add("cafe-selected-highlight");
+        // If you changed to red, ensure the class name matches your CSS
+        // textElement.classList.add("cafe-selected-red");
+      } else {
+        textElement.classList.remove("cafe-selected-highlight");
+        // textElement.classList.remove("cafe-selected-red");
+      }
+    });
   } else {
-    console.warn(`Cafe text element with map-id "${mapId}" not found on map.`);
+    console.warn(`No cafe text elements found on map for name: "${cafeName}"`);
   }
 };
 
-// ... rest of your map script (userIcon, userMarker, geolocation, etc.)
+// ... rest of your map script (userIcon, userMarker, geolocation, etc.) ...
 const userIcon = L.icon({
-  iconUrl: "icon.png", // your image path
-  iconSize: [70, 70], // size in pixels
-  iconAnchor: [16, 16], // point of the icon that maps to the marker’s latlng
-  popupAnchor: [0, -16], // where popups point, relative to iconAnchor
+  iconUrl: "icon.png",
+  iconSize: [70, 70],
+  iconAnchor: [16, 16],
+  popupAnchor: [0, -16],
 });
 
 const userMarker = L.marker([0, 0], { icon: userIcon }).addTo(map);
@@ -169,7 +182,7 @@ function onUpdatePosition(pos) {
   const ll = [pos.coords.latitude, pos.coords.longitude];
   if (imgBounds.contains(ll)) {
     userMarker.setLatLng(ll);
-    map.panTo(ll); // Optionally pan to keep user centered
+    map.panTo(ll);
   }
 }
 

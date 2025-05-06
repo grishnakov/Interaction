@@ -101,6 +101,15 @@
 
 /* status classes */
 
-.cafe-selected-highlight {
-    fill: #CCCCCC !important; /* The desired grey color */
+.cafe-ok {
+    fill: black;
+  }
+  
+  .cafe-down {
+    fill: #D32F2F; /* Or your preferred 'down' color */
+  }
+  
+  .cafe-selected-highlight { /* Or .cafe-selected-red if you changed it */
+    fill: #CCCCCC !important; /* Gray highlight */
+    /* fill: red !important; */ /* Or Red text */
   }
