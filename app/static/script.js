@@ -39,25 +39,23 @@ fetch('static/cafes.json')
   .then(r => r.json())
   .then(cafes => {
     cafes.forEach(cafe => {
-      // choose class based on status
-      const cls = cafe.status === 'OPERATIONAL'
-        ? 'cafe-ok'
-        : 'cafe-down';
+      // 1) build a custom icon for *this* cafe
+      const icon = L.icon({
+        iconUrl: "",    // e.g. "assets/icons/union-square.png"
+        iconSize: [32, 32],      // adjust per your images
+        iconAnchor: [16, 32],      // bottom‑center of the icon
+        popupAnchor: [0, -32]       // where the popup arrow points
+      });
 
-      // create and show a tooltip at [lat,lng], no offset
-      L.tooltip({
-        permanent: true,
-        direction: 'center',   // puts the text exactly at the point
-        className: `cafe-label ${cls}`,
-        offset: [0, 0]
-      })
-      .setLatLng([cafe.lat, cafe.lng])
-      .setContent(cafe.name)
-      .addTo(map);
+      // 2) drop a marker with that icon
+      L.marker([cafe.lat, cafe.lng], { icon })
+        .addTo(map)
+        .bindPopup(`<strong>${cafe.name}</strong><br>Status: ${cafe.status}`)
+        // .openPopup()  // if you want them all open by default
+        ;
     });
   })
   .catch(err => console.error(err));
-
 
 
 // 5) Prepare the user marker (hidden until we get a fix)
@@ -94,8 +92,7 @@ function onUpdatePosition(pos) {
   const ll = [pos.coords.latitude, pos.coords.longitude];
   if (imgBounds.contains(ll)) {
     userMarker.setLatLng(ll);
-    // uncomment to follow them:
-    // map.panTo(ll);
+    map.panTo(ll);
   }
 }
 
