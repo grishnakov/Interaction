@@ -45,12 +45,26 @@
             <div id="default-view" class="content-section active">
             </div>
 
+            <h2>Cafe Collection</h2>
+
             <div id="list-view" class="content-section">
                 <button class="back-button">←</button>
-                <h2>Cafe Collection</h2>
+
+                <div class="search-container">
+                    <input type="text" id="cafe-search" placeholder="Culture cafes...">
+                    <button id="search-button" onclick="search()">SEARCH</button>
+                </div>
+
+                <h2>Unchecked Cafés</h2>
+                <div id="unchecked-container"></div>
+
+                <h2>Checked Cafés</h2>
+                <div id="checked-container"></div>
+
                 <div id="cafe-list-container" class="scrollable-list">
                     <!-- Cafe items will be dynamically inserted here by JavaScript -->
                 </div>
+
             </div>
             <!-- Login view (hidden by default) -->
             <div id="login-view" class="content-section">

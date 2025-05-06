@@ -1,25 +1,29 @@
 .scrollable-list {
-    max-height: 400px; /* Adjust this value to your desired height */
-    overflow-y: auto; /* Adds a vertical scrollbar when content exceeds max-height */
-    padding: 10px; /* Optional: for some internal spacing */
-    border: 1px solid #eee; /* Optional: to visually define the list area */
-    margin-top: 10px; /* Optional: space below the h2 */
-  }
-  
-  /* Optional: Style for the generated items if needed */
-  .scrollable-list label {
-    display: inline-block; /* Ensures label and checkbox align well */
-    margin-left: 5px;
-    vertical-align: middle;
-  }
-  
-  .scrollable-list input[type="checkbox"] {
-    vertical-align: middle;
-  }
-  
-  .scrollable-list br {
-    /* If you want tighter spacing, you might adjust or remove the <br> in JS
+  max-height: 80%vh;
+  /* Adjust this value to your desired height */
+  overflow-y: auto;
+  /* Adds a vertical scrollbar when content exceeds max-height */
+  padding: 10px;
+  margin-top: 10px;
+  /* Optional: space below the h2 */
+}
+
+/* Optional: Style for the generated items if needed */
+.scrollable-list label {
+  display: inline-block;
+  /* Ensures label and checkbox align well */
+  margin-left: 5px;
+  vertical-align: middle;
+}
+
+.scrollable-list input[type="checkbox"] {
+  vertical-align: middle;
+}
+
+.scrollable-list br {
+  /* If you want tighter spacing, you might adjust or remove the <br> in JS
        and use block display for label/input pairs with margins.
        For now, this keeps the original line break behavior. */
-    margin-bottom: 5px; /* Add some space after each line break */
-  }
+  margin-bottom: 5px;
+  /* Add some space after each line break */
+}

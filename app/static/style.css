@@ -92,24 +92,27 @@
     border: none;
     box-shadow: none;
     pointer-events: none;
-    /* clicks pass through */
     font-family: sans-serif;
-    font-size: 14px;
-    /* constant pixel size */
-    white-space: nowrap;
+    font-size: 19px;
+    white-space: wrap;
+    width: 19px;
 }
 
 /* status classes */
 
 .cafe-ok {
     fill: black;
-  }
-  
-  .cafe-down {
-    fill: #D32F2F; /* Or your preferred 'down' color */
-  }
-  
-  .cafe-selected-highlight { /* Or .cafe-selected-red if you changed it */
-    fill: #CCCCCC !important; /* Gray highlight */
-    /* fill: red !important; */ /* Or Red text */
-  }
+}
+
+.cafe-down {
+    fill: #D32F2F;
+    /* Or your preferred 'down' color */
+}
+
+.cafe-selected-highlight {
+    /* Or .cafe-selected-red if you changed it */
+    fill: #CCCCCC !important;
+    /* Gray highlight */
+    /* fill: red !important; */
+    /* Or Red text */
+}

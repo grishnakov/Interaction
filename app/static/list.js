@@ -1,84 +1,71 @@
-// static/list.js
-document.addEventListener("DOMContentLoaded", function () {
-  const cafeListContainer = document.getElementById("cafe-list-container");
+document.addEventListener("DOMContentLoaded", () => {
+  const uncheckedCt = document.getElementById("unchecked-container");
+  const checkedCt = document.getElementById("checked-container");
+  const searchInput = document.getElementById("cafe-search");
+  let names = [];
 
-  if (!cafeListContainer) {
-    console.error("Error: The element #cafe-list-container was not found.");
-    return;
-  }
-
-  // Helper function to generate slugs (if still needed)
-  function generateCafeSlug(name) {
-    return name
-      .replace(/[^a-zA-Z0-9\s-]/g, "")
+  function slugify(n) {
+    return n.replace(/[^a-zA-Z0-9\s-]/g, "")
       .trim()
       .replace(/\s+/g, "-")
       .toLowerCase();
   }
 
-  fetch("static/cafes.json")
-    .then((response) => {
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      return response.json();
-    })
-    .then((cafes) => {
-      if (!cafes || cafes.length === 0) { // Added a check for !cafes
-        cafeListContainer.textContent = "No cafes found.";
-        return;
-      }
+  // render into the unchecked container by default
+  function renderList(list) {
+    uncheckedCt.innerHTML = "";
+    list.forEach(name => {
+      const id = `cafe-${slugify(name)}`;
+      const wrap = document.createElement("div");
+      wrap.className = "cafe-item";
 
-      // 1. Create a list of unique cafe names first
-      const uniqueCafeNames = [
-        ...new Set(cafes.map(cafe => cafe.name)),
-      ];
+      const cb = document.createElement("input");
+      cb.type = "checkbox";
+      cb.id = id;
+      cb.value = name;
 
-      // 2. Sort the unique cafe names alphabetically
-      uniqueCafeNames.sort((a, b) => a.localeCompare(b));
+      const label = document.createElement("label");
+      label.htmlFor = id;
+      label.textContent = name;
 
-      if (uniqueCafeNames.length === 0) {
-        cafeListContainer.textContent = "No cafes found.";
-        return;
-      }
-
-      // 3. Iterate over the sorted unique names to create checkboxes
-      uniqueCafeNames.forEach((cafeName) => {
-        const safeCafeNameSlug = generateCafeSlug(cafeName);
-        const checkboxId = `cafe-checkbox-${safeCafeNameSlug}`;
-
-        const checkbox = document.createElement("input");
-        checkbox.type = "checkbox";
-        checkbox.id = checkboxId;
-        checkbox.name = `cafe-group-${safeCafeNameSlug}`;
-        checkbox.value = cafeName; // The actual cafe name as the value
-
-        checkbox.addEventListener("change", function () {
-          if (typeof window.updateCafeHighlightOnMap === "function") {
-            window.updateCafeHighlightOnMap(this.value, this.checked);
-          } else {
-            console.error(
-              "updateCafeHighlightOnMap function not found. Ensure map script (script.js) is loaded and the function is globally available.",
-            );
-          }
-        });
-
-        const label = document.createElement("label");
-        label.htmlFor = checkboxId;
-        label.textContent = cafeName;
-
-        const br = document.createElement("br");
-
-        cafeListContainer.appendChild(checkbox);
-        cafeListContainer.appendChild(label);
-        cafeListContainer.appendChild(br);
+      // move the wrapper on toggle
+      cb.addEventListener("change", () => {
+        if (cb.checked) {
+          checkedCt.appendChild(wrap);
+        } else {
+          uncheckedCt.appendChild(wrap);
+        }
+        // also notify the map
+        if (window.updateCafeHighlightOnMap) {
+          window.updateCafeHighlightOnMap(name, cb.checked);
+        }
       });
-    })
-    .catch((error) => {
-      console.error("Error fetching or processing cafes.json:", error);
-      if (cafeListContainer) {
-        cafeListContainer.textContent =
-          "Failed to load the cafe collection. Please try again later.";
-      }
+
+      wrap.appendChild(cb);
+      wrap.appendChild(label);
+      uncheckedCt.appendChild(wrap);
     });
+  }
+
+  fetch("static/cafes.json")
+    .then(r => r.ok ? r.json() : Promise.reject(r.status))
+    .then(cafes => {
+      names = [...new Set(cafes.map(c => c.name))]
+        .sort((a, b) => a.localeCompare(b));
+      renderList(names);
+    })
+    .catch(err => {
+      console.error(err);
+      uncheckedCt.textContent = "Error loading cafés.";
+    });
+
+  // simple search filter
+  searchInput.addEventListener("input", () => {
+    const q = searchInput.value.toLowerCase().trim();
+    renderList(
+      names.filter(n => n.toLowerCase().includes(q))
+    );
+    // on re-render all become unchecked visually,
+    // but any you’d already clicked will live in checkedCt
+  });
 });

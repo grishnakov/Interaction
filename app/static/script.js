@@ -155,7 +155,7 @@ window.updateCafeHighlightOnMap = function (cafeName, isChecked) {
 
 // ... rest of your map script (userIcon, userMarker, geolocation, etc.) ...
 const userIcon = L.icon({
-  iconUrl: "icon.png",
+  iconUrl: "static/media/icon.png",
   iconSize: [70, 70],
   iconAnchor: [16, 16],
   popupAnchor: [0, -16],
