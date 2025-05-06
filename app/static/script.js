@@ -36,7 +36,7 @@ L.imageOverlay("static/map.svg", imgBounds).addTo(map);
 // 5) Prepare the user marker (hidden until we get a fix)
 const userMarker = L.circleMarker([0, 0], {
   radius: 8,
-  fillColor: "#007AFF",
+  fillColor: "#FFFFFF",
   color: "#fff",
   weight: 2,
   fillOpacity: 0.8,
