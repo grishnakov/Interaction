@@ -24,7 +24,7 @@ const map = L.map("map", {
   center: imgBounds.getCenter(),
   attributionControl: false,
   zoom: 12,
-  minZoom: 11,
+  minZoom: 14,
   maxZoom: 24,
   maxBounds: imgBounds.pad(0.05),
   maxBoundsViscosity: 1.0,
@@ -39,20 +39,25 @@ fetch('static/cafes.json')
   .then(r => r.json())
   .then(cafes => {
     cafes.forEach(cafe => {
-      // 1) build a custom icon for *this* cafe
-      const icon = L.icon({
-        iconUrl: "static/icons/Joe-&-the-Juice.png",    // e.g. "assets/icons/union-square.png"
-        iconSize: [32, 32],      // adjust per your images
-        iconAnchor: [16, 32],      // bottom‑center of the icon
-        popupAnchor: [0, -32]       // where the popup arrow points
+      // pick a CSS class or image URL per status
+      const cls = cafe.status === 'OPERATIONAL'
+        ? 'cafe-ok'
+        : 'cafe-down';
+
+      // 1) Create a DivIcon whose HTML never scales
+      const labelIcon = L.divIcon({
+        className: `cafe-label ${cls}`,
+        html: `<span>${cafe.name}</span>`,
+        iconSize: null,          // auto-size to the span
+        iconAnchor: [0, 0],      // tweak to center it if you like
+        // NOTE: divIcons live in the markerPane by default
       });
 
-      // 2) drop a marker with that icon
-      L.marker([cafe.lat, cafe.lng], { icon })
-        .addTo(map)
-        .bindPopup(`<strong>${cafe.name}</strong><br>Status: ${cafe.status}`)
-        .openPopup()  // if you want them all open by default
-        ;
+      // 2) Drop a marker with that icon (non-interactive so clicks pass through)
+      L.marker([cafe.lat, cafe.lng], {
+        icon: labelIcon,
+        interactive: false
+      }).addTo(map);
     });
   })
   .catch(err => console.error(err));
@@ -61,7 +66,7 @@ fetch('static/cafes.json')
 // 5) Prepare the user marker (hidden until we get a fix)
 const userIcon = L.icon({
   iconUrl: 'icon.png',   // your image path
-  iconSize: [32, 32],              // size in pixels
+  iconSize: [70, 70],              // size in pixels
   iconAnchor: [16, 16],              // point of the icon that maps to the marker’s latlng
   popupAnchor: [0, -16]               // where popups point, relative to iconAnchor
 });
@@ -113,3 +118,4 @@ if (navigator.geolocation) {
   alert("Geolocation not supported, showing full map.");
   map.fitBounds(imgBounds);
 }
+
