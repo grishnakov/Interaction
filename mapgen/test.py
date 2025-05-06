@@ -6,12 +6,12 @@ from dotenv import load_dotenv
 load_dotenv()
 # ─── Configuration ─────────────────────────────────────────────────────────────
 API_KEY = os.getenv("KEY")
-MAP_ID = "YOUR_MAP_ID_HERE"  # ← Your cloud‑style ID
-CENTER = "40.7831,-73.9712"  # Manhattan center
-ZOOM = 13  # Street‑level zoom
-SIZE = "600x1200"  # Portrait layout
+MAP_ID = "c1e8f216a4fa1dff"  # ← Your cloud‑style ID
+CENTER = "40.762,-73.982"  # Manhattan center
+ZOOM = 16  # Street‑level zoom
+SIZE = "6000x12000"  # Portrait layout
 SCALE = 2  # Retina support
-ANGLE = 29  # Rotation angle (° east of north)
+ANGLE = -29.5  # Rotation angle (° east of north)
 
 # ─── Fetch Map Using Map ID ────────────────────────────────────────────────────
 url = "https://maps.googleapis.com/maps/api/staticmap"
