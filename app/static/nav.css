@@ -266,6 +266,7 @@ nav.content-loaded #nav-view {
 
 .back-button {
     border-radius: 50px;
+    border-width: 0px;
     padding: 0.5rem 1rem;
     margin-bottom: 1rem;
     background-color: white;
@@ -274,6 +275,6 @@ nav.content-loaded #nav-view {
 }
 
 .back-button:hover {
-    background-color: rgb(0, 0, 0);
+    background-color: #ffffff;
     cursor: url(static/media/icon.png);
 }
