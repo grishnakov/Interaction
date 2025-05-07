@@ -77,6 +77,7 @@
     .leaflet-control-zoom-in,
     .leaflet-control-zoom-out {
         font-size: 18px !important;
+        color: red;
     }
 
 }
@@ -90,17 +91,8 @@
 }
 
 .leaflet-tooltip.cafe-label {
-    background: transparent;
-    border: none;
-    box-shadow: none;
-    pointer-events: none;
-    font-family: sans-serif;
-    font-size: 19px;
-    white-space: wrap;
-    width: 19px;
+    color: red;
 }
-
-/* status classes */
 
 .cafe-ok {
     fill: black;
