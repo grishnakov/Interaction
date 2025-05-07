@@ -30,37 +30,41 @@
         background: linear-gradient(to bottom, #D7BDA6, #34221b);
     }
 
-    /* img {
-        width: 10px;
-        height: 100px;
-        transform: rotate(90deg);
-        position: fixed;
-    } */
-
     .leaflet-control-zoom a {
         display: block !important;
-        /* take full width of its own box */
+        top: 0px;
+        bottom: 0px;
         float: none !important;
-        /* override Leaflet’s float:left */
         padding: 0 !important;
-        /* no extra padding */
         margin: 4px auto !important;
-        /* small vertical gap, centered */
         width: 36px !important;
-        /* make it square */
         height: 36px !important;
         line-height: 36px !important;
-        /* center the “+”/“–” vertically */
         text-align: center !important;
-        background: #000 !important;
-        /* your circle fill */
+        background: #000000 !important;
         color: #fff !important;
-        /* your icon color */
         border: none !important;
-        /* no border */
         box-shadow: none !important;
         border-radius: 50% !important;
-        /* perfect circle */
+        font-family: "andale-mono-mt-pro", sans-serif;
+        font-weight: 400;
+        font-size: 1.5em;
+    }
+
+    .leaflet-control-zoom.leaflet-bar {
+        top: auto !important;
+        bottom: 10px !important;
+        /* adjust as needed */
+        left: 10px !important;
+        /* adjust as needed */
+        right: auto !important;
+    }
+
+    /* (optional) if you need to override the wrapper’s positioning context */
+    .leaflet-top.leaflet-left {
+        top: auto !important;
+        bottom: 0 !important;
+        left: 0 !important;
     }
 
 
@@ -85,8 +89,6 @@
     }
 }
 
-/* added for the graying out */
-
 .leaflet-tooltip.cafe-label {
     background: transparent;
     border: none;
@@ -106,13 +108,9 @@
 
 .cafe-down {
     fill: #D32F2F;
-    /* Or your preferred 'down' color */
+
 }
 
 .cafe-selected-highlight {
-    /* Or .cafe-selected-red if you changed it */
     fill: #CCCCCC !important;
-    /* Gray highlight */
-    /* fill: red !important; */
-    /* Or Red text */
 }
