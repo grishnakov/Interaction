@@ -324,3 +324,10 @@ nav.content-loaded #nav-view {
     font-family: "inter-variable", sans-serif;
     font-variation-settings: 'wght' 400, 'slnt' 0;
 }
+
+.gem-stick {
+    position: fixed;
+    width: 300px;
+    top: 16rem;
+    left: 2rem;
+}
