@@ -44,6 +44,21 @@ h2 {
   font-variation-settings: 'wght' 400, 'slnt' 0;
 }
 
+img {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  width: 100px;
+
+}
+
+#img-two {
+  position: fixed;
+  top: 20px;
+  right: 90px;
+  width: 70px;
+}
+
 scrollable-list label {
   display: block;
   overflow: hidden;
