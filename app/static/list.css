@@ -2,22 +2,28 @@ h2 {
   font-family: "inter-variable", sans-serif;
   font-variation-settings: 'wght' 400, 'slnt' 0;
   text-transform: uppercase;
+  margin-top: -5px;
 }
 
-input::placeholder {
+/* input::placeholder {
   color: #CCCCCC;
   font-family: "inter-variable", sans-serif;
   font-variation-settings: 'wght' 400, 'slnt' 0;
   padding: 10px;
-}
+} */
 
 #cafe-search {
   background-color: rgb(255, 255, 255);
   border-radius: 25px;
   height: 30px;
-  width: 200px;
-  padding: 3px;
+  width: 250px;
+  padding-left: 15px;
   border-width: 0px;
+}
+
+#cafe-search::placeholder {
+  font-family: "inter-variable", sans-serif;
+  font-variation-settings: 'wght' 400, 'slnt' 0;
 }
 
 #status-filter {
@@ -25,10 +31,13 @@ input::placeholder {
   border-width: 0px;
   height: 36px;
   width: 36px;
+  font-family: "inter-variable", sans-serif;
+  font-variation-settings: 'wght' 400, 'slnt' 0;
 }
 
 .scrollable-list {
   overflow-y: auto;
+  max-height: 500px;
   padding: 10px;
   margin-top: 10px;
   font-family: "inter-variable", sans-serif;
@@ -50,7 +59,7 @@ scrollable-list label {
 #cafe-list-container .cafe-item {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 4px;
   margin-bottom: 8px;
 }
 
@@ -68,7 +77,7 @@ scrollable-list label {
   appearance: none;
   width: 25px;
   height: 25px;
-  border: 2px solid #888;
+  border: 2px solid #ffffff;
   border-radius: 50%;
   cursor: pointer;
   position: relative;
@@ -88,6 +97,46 @@ scrollable-list label {
   width: 4px;
   height: 8px;
   border: solid #fff;
+  color: red;
   border-width: 0 2px 2px 0;
   transform: rotate(45deg);
+}
+
+.search-wrapper {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 25px;
+  overflow: hidden;
+  background: #fff;
+  max-width: 270px;
+}
+
+.search-wrapper input {
+  flex: 1;
+  border: none;
+  font: inherit;
+  outline: none;
+}
+
+.search-wrapper select {
+  appearance: none;
+  /* remove native arrow styling */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  border: black;
+  background: transparent;
+  padding: 0.5em;
+  cursor: pointer;
+}
+
+/* if you want your own down‑arrow, you can add it via ::after on the select */
+.search-wrapper select {
+  position: relative;
+}
+
+.search-wrapper select::after {
+  content: "▾";
+  position: absolute;
+  right: 0.5em;
+  pointer-events: none;
 }
